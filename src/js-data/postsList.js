@@ -20,7 +20,7 @@ export let postsListData = [
     stock: '',
     manufacturingTime: '',
     mainImgLink:
-      'https://raw.githubusercontent.com/sabationok/market_pro_test__liveserver/main/images/brand_cards/brand_2/suknia-synia__br2.webp',
+      'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
     imagesList: [],
     postItemList: [
       {
@@ -56,7 +56,7 @@ export let postsListData = [
     stock: '',
     manufacturingTime: '',
     mainImgLink:
-      'https://raw.githubusercontent.com/sabationok/market_pro_test__liveserver/main/images/brand_cards/brand_2/suknia_rozeva_br2.webp',
+      'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_rozeva_br2.webp',
     imagesList: [],
     postItemList: [
       {
@@ -98,7 +98,7 @@ export let postsListData = [
     stock: '',
     manufacturingTime: '',
     mainImgLink:
-      'https://raw.githubusercontent.com/sabationok/market_pro_test__liveserver/main/images/brand_cards/brand_2/suknia_zelena__br2.webp',
+      'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_zelena__br2.webp',
     imagesList: [],
     postItemList: [
       {
@@ -418,6 +418,42 @@ export let postsListData = [
       },
       {
         itemId: '102-8888',
+        itemPosTop: '60%',
+        itemPostLeft: '20%',
+      },
+    ],
+    post: 1,
+  },
+  {
+    postId: '105-2222',
+    postType: 'look',
+    postAutorId: '105',
+    postName: 'Сукня, шовкова, синя',
+    articul: '00025',
+    section: '',
+    category: '',
+    subCategory: '',
+    price: 2256,
+    carrency: 'UAH',
+    cashbackLvl: '02',
+    mainAtribute_1: '',
+    mainAtribute_2: '',
+    style: '',
+    content: '',
+    availability: '',
+    stock: '',
+    manufacturingTime: '',
+    mainImgLink:
+      'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia-synia/suknia-synia_1.webp',
+    imagesList: [],
+    postItemList: [
+      {
+        itemId: '101-8888',
+        itemPosTop: '50%',
+        itemPostLeft: '28%',
+      },
+      {
+        itemId: '104-8888',
         itemPosTop: '60%',
         itemPostLeft: '20%',
       },

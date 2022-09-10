@@ -26,6 +26,14 @@ export let autorsListData = [
     autorPostCardsIdList: ['103-2222', '103-5555', '103-8888'],
     autorEMPTY:'',
   },
+  {
+    autorId: 105,
+    autorName: '"Галина Крива" Modern',
+    autorlogoLink: primaryautorlogoLink,
+    autorType: 'brand',
+    autorPostCardsIdList: ['105-2222'],
+    autorEMPTY:'',
+  },
   /*{
     autorId: 104,
     autorName: 'Файна шапка "forYOU"',
