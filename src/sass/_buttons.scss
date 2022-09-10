@@ -1,0 +1,318 @@
+.button {
+  display: block;
+  border-style: none;
+
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-align: center;
+
+  border: 1px solid transparent;
+
+  transition: all var(--timing-function__main);
+  & .btn-svg {
+    pointer-events: none;
+  }
+  // кнопка виклику меню сайту
+  &.--for_menu {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--brand_clr__1--accent);
+
+    padding: 4px 8px;
+    background-color: var(--brand_clr__2);
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: var(--brand_clr__1--accent);
+      // background-color: var(--brand_clr__2-hover);
+    }
+    @media screen and (min-width: 480px) {
+      padding: 8px 16px;
+    }
+  }
+  // кнопки для прийняття рішень
+  &.--decision {
+    padding: 4px 12px 2px;
+    min-width: 100px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    background-color: var(--btn-deciscon_clr__primary);
+
+    border-bottom: 4px solid transparent;
+
+    transition: all var(--timing-function__main);
+    &:hover,
+    &:focus {
+      background-color: var(--btn-deciscon_clr__hover);
+    }
+    &:active {
+      background-color: var(--btn-deciscon_clr__active);
+    }
+    &.--accept {
+      &:hover,
+      &:focus {
+        border-color: rgb(84, 255, 62);
+      }
+    }
+    &.--reset {
+      &:hover,
+      &:focus {
+        border-color: rgb(255, 242, 62);
+      }
+    }
+    &.--decline {
+      &:hover,
+      &:focus {
+        border-color: rgb(255, 62, 62);
+      }
+    }
+  }
+  // кнопка для добавлення карточки у корзину
+  &.--addToCart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+
+    width: 42px;
+    height: 42px;
+    background-color: #fff;
+
+    fill: currentColor;
+
+    & .btn-svg {
+      width: 24px;
+      height: 24px;
+    }
+    &:hover,
+    &:focus
+     {
+      fill: var(--brand_clr__1--accent);
+    }
+    &:active {
+      fill: var(--icon-clr__primary);
+    }
+    &.--inCart {
+      fill: rgba(103, 255, 95, 0.7);
+      &:hover {
+        fill: rgba(255, 55, 55, 0.7);
+      }
+    }
+    &.--deleted {
+      fill: rgba(255, 55, 55, 0.7);
+      &:hover {
+        fill: rgba(103, 255, 95, 0.7);
+      }
+    }
+  }
+  // кнопка на карточці для миттєвої покупки
+  &.--buyNow {
+    font-size: 20px;
+    font-weight: 500;
+
+    padding: 8px 16px;
+    color: #fff;
+
+    background-color: var(--brand_clr__1--accent);
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      background-color: var(--brand_clr__1);
+    }
+    &:active {
+      background-color: #fff;
+      color: var(--brand_clr__1--accent);
+      border-color: var(--brand_clr__1--accent);
+    }
+  }
+  //кнопка для відправки відгуку
+  &.--send-feedback {
+    font-weight: 500;
+    padding: 4px 8px;
+
+    color: rgb(94, 158, 255);
+
+    background-color: #fff;
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      color: rgb(68, 142, 253);
+    }
+    &:active {
+      color: #fff;
+      background-color: rgb(28, 119, 255);
+    }
+  }
+  // кнопка яка витягує оверлей на зображені карточки
+  &.--pull-img-overlay {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    gap: 16px;
+
+    font-size: 15px;
+    font-weight: 600;
+    text-align: start;
+
+    width: 100%;
+    height: 36px;
+    padding: 4px 16px;
+
+    border-style: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    fill: currentColor;
+    & .btn-svg {
+      pointer-events: none;
+      height: 14px;
+      width: 14px;
+    }
+    &:hover {
+      color: var(--brand_clr__1);
+    }
+    &:focus,
+    &:active {
+      color: var(--brand_clr__1);
+      & + .--overlay {
+        &.--top,
+        &.--left,
+        &.--right {
+          z-index: 2;
+          transform: scale(1);
+          pointer-events: all;
+        }
+        &.--center {
+          opacity: 1;
+          pointer-events: all;
+        }
+      }
+    }
+    &.--selected {
+      & + .--overlay {
+        &.--top,
+        &.--left,
+        &.--right {
+          z-index: 2;
+          transform: scale(1);
+          pointer-events: all;
+        }
+        &.--center {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: all;
+        }
+      }
+    }
+  }
+  // кнопка закриття модального вікна
+  &.--close-modal {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    fill: black;
+    transition: box-shadow var(--anim-main-timing-function);
+    & svg {
+      fill: black;
+      width: 12px;
+      height: 12px;
+    }
+  }
+  // кнопка фільтру карток у автора
+  &.--autorZone-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    align-self: center;
+    margin-left: auto;
+
+    height: 34px;
+    width: 34px;
+    min-width: 34px;
+
+    padding: 0;
+
+    // fill: var(--icon);
+
+    background-color: transparent;
+    & .btn-svg {
+      width: 60%;
+      height: 60%;
+    }
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      fill: var(--brand_clr__1--accent);
+    }
+    &:active {
+      fill: var(--icon-clr__primary);
+    }
+  }
+  // кнопка додаткових дій на карточці
+  &.--card-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 30px;
+    width: 30px;
+    min-width: 30px;
+    padding: 0;
+
+    background-color: transparent;
+    & .btn-svg {
+      width: 80%;
+      height: 80%;
+    }
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      fill: var(--brand_clr__1--accent);
+    }
+    &:active {
+      fill: var(--icon-clr__primary);
+    }
+  }
+  &.--open-autorCardList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 34px;
+    width: 34px;
+    min-width: 34px;
+
+    padding: 0;
+
+    fill: var(--icon-clr__primary);
+
+    background-color: transparent;
+    & .btn-svg {
+      width: 60%;
+      height: 60%;
+    }
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      fill: var(--brand_clr__1--accent);
+    }
+    &:active {
+      fill: var(--icon-clr__primary);
+    }
+  }
+}

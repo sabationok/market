@@ -1,0 +1,165 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+html {
+  box-sizing: border-box;
+  /* відміняє синій фон при дотику по обєктах на тачскірінах */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #212121;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+
+  background-color: #ffffff;
+  margin: 0;
+}
+.outline {
+  outline: var(--testing-brdr-wght) solid var(--testing-brdr-clr);
+}
+.section {
+  &__margin8px {
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  &.--flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  &__main {
+    display: flex;
+  }
+  &__autorTop {
+    max-width: 480px;
+    // min-width: 320px;
+    // margin: auto;
+    border-top: 1px solid rgba(216, 216, 216, 0.5);
+    border-bottom: 1px solid rgba(216, 216, 216, 0.5);
+    // @media screen and (min-width: 480px) {
+    // }
+    @media screen and (min-width: 480px) {
+      max-width: 100%;
+      border-right: 1px solid rgba(216, 216, 216, 0.5);
+      border-left: 1px solid rgba(216, 216, 216, 0.5);
+    }
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin: 8px auto;
+  max-width: 480px;
+}
+
+/* ----------------- НОРМАЛІЗАЦІЯ -------------- */
+/*  ЗАГОЛОВКИ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+/* ПАРАГРАФИ  */
+p {
+  margin: 0;
+}
+/* ТАБЛИЦі */
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 0;
+}
+th,
+td {
+  /* display: table-cell; */
+  /* display: grid; */
+  /* display: inline-table; */
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  user-select: none;
+}
+/* СПИСКИ */
+ul {
+  list-style: none;
+  padding-inline-start: 0px;
+  margin: 0px;
+}
+/* ПОСИЛАННЯ */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/* АДРЕСИ */
+address {
+  font-style: normal;
+}
+/* ЗОБРАЖЕННЯ */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+/* КНОПКИ */
+button {
+  user-select: none;
+  cursor: pointer;
+}
+/* ----------------- СКРИТІ ЕЛЕМЕНТИ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* ----------------- SCROLLBAR */
+// @media screen and (min-width: 1000px) {
+//   ::-webkit {
+//     &-scrollbar {
+//       width: 6px;
+//       height: 6px;
+//     }
+//     &-scrollbar-track {
+//       background-color: rgba(0, 0, 0, 0.1);
+//     }
+//     &-scrollbar-button {
+//       height: 0;
+//       width: 0;
+//       overflow: hidden;
+//     }
+//     &-scrollbar-thumb {
+//       background-color: rgba(0, 0, 0, 0.3);
+//       border-radius: 6px;
+//     }
+//     &-scrollbar-thumb:active {
+//       background-color: rgba(0, 0, 0, 0.5);
+//     }
+//     &-scrollbar-thumb:hover {
+//       background-color: rgba(0, 0, 0, 0.6);
+//     }
+
+//     // bimp
+//       // --scrollbar-top-offset: 0px;
+//       // --scrollbar-bottom-offset: 0px;
+//       // --scrollbar-left-offset: 0px;
+//       // --scrollbar-right-offset: 0px;
+//   }
+// }
