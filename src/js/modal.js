@@ -21,17 +21,7 @@ function toggleModal() {
     closeModalBtn.removeEventListener('click', toggleModal);
   }
 }
-// //* Закриває і чистить вміст модалки
-// function closeModal() {
-//   modalEl.classList.remove('is-hidden');
-//   modalContentEl.textContent = '';
-//   closeModalBtn.removeEventListener('click', closeModal);
-// }
-// //* Відкриває модалку і додає слухача подій на кнопку закриття
-// function closeModal() {
-//   modalEl.classList.add('is-hidden');
-//   closeModalBtn.addEventListener('click', closeModal);
-// }
+
 // * Функція створення модалки
 function createModalContent(target, callback) {
   console.log(target);

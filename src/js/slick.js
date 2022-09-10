@@ -6,30 +6,31 @@ $(document).ready(function () {
     infinite: true,
     arrows: false,
     // arrows: false,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
 
-   /* responsive: [
+   responsive: [
       {
         breakpoint: 1100,
         settings: {
           arrows: false,
           // centerMode: true,
           // centerPadding: '40px',
+          slidesToShow: 2,
           slidesToScroll: 1,
-          slidesToShow: 1,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 768,
         settings: {
           arrows: false,
           // centerMode: true,
           // centerPadding: '40px',
           slidesToShow: 1,
+          slidesToScroll: 1,
         },
       },
-    ],*/
+    ],
 
     prevArrow: '<button type="button" class="slick-prev">&#60;</button>',
     nextArrow: '<button type="button" class="slick-next">&#62;</button>',

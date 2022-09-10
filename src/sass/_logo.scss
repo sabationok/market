@@ -1,30 +1,33 @@
 .logo {
-  &.box {
-    color: #fff;
-    background-color: var(--brand_clr__1--accent);
-    border: 1px solid transparent;
+  // &.box {
+  //   color: #fff;
+  //   background-color: var(--brand_clr__1--accent);
+  //   border: 1px solid transparent;
 
-    padding: 4px 8px;
+  //   padding: 4px 8px;
 
-    &:hover,
-    &:focus,
-    &:focus-visible {
-      background-color: var(--brand_clr__1);
-    }
-    @media screen and (min-width: 480px) {
-      padding: 8px 16px;
-    }
-  }
-  & .logo_link {
-    display: inline-block;
+  //   &:hover,
+  //   &:focus,
+  //   &:focus-visible {
+  //     background-color: var(--brand_clr__1);
+  //   }
+  //   @media screen and (min-width: 480px) {
+  //     padding: 8px 16px;
+  //   }
+  // }
+  // & .logo_link {
+  //   display: inline-block;
 
-    font-family: 'Ralaway', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
+  //   font-family: 'Ralaway', sans-serif;
+  //   font-size: 20px;
+  //   font-weight: 700;
+  //   line-height: 1.2;
+  //   letter-spacing: 0.05em;
+  //   white-space: nowrap;
 
+  // }
+  & .logo-img{
+    width: 56px;
   }
 
 }

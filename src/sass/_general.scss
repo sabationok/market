@@ -59,6 +59,13 @@ body {
 
   margin: 8px auto;
   max-width: 480px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 740px;
+  }
+  @media screen and (min-width: 1100px) {
+    max-width: 1080px;
+  }
 }
 
 /* ----------------- НОРМАЛІЗАЦІЯ -------------- */

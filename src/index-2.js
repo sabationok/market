@@ -188,6 +188,11 @@ function createPostCardComp(cardInfoObject) {
         </div>
 
         <div class="card__actions-box">
+          <button class="button --card-action" data-action-comment="${postId}">
+            <svg class="btn-svg">
+              <use href="${sprite_market}#icon-comment-o"></use>
+            </svg>
+          </button>
           <button class="button --card-action" data-action-like="${postId}">
             <svg class="btn-svg">
               <use href="${sprite_market}#icon-heart-o"></use>
@@ -218,12 +223,12 @@ function createPostCardComp(cardInfoObject) {
 
         <!-- //* кнопки "Купити" і "Кошик" -->
         <div class="card__forBuyBtns-box">
-          <button class="button --addToCart js-clickToBuy" type="button" data-buy-later="${postId}">
+          <button class="button --addToCart" type="button" data-buy-later="${postId}">
             <svg class="btn-svg">
               <use href="${sprite_market}#icon-shopping-cart"></use>
             </svg>
           </button>
-          <button class="button --buyNow js-clickToBuy" type="button" data-buy-now="${postId}">
+          <button class="button --buyNow" type="button" data-buy-now="${postId}">
             Купити
           </button>
         </div>

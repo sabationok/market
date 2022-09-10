@@ -70,7 +70,32 @@
       }
     }
   }
-  // кнопка для добавлення карточки у корзину
+  // кнопки КОРЗИНИ
+  &.--showMyCart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+
+    width: 42px;
+    height: 42px;
+    background-color: #fff;
+
+    fill: currentColor;
+
+    & .btn-svg {
+      width: 24px;
+      height: 24px;
+    }
+    &:hover,
+    &:focus
+     {
+      fill: var(--brand_clr__1--accent);
+    }
+    &:active {
+      fill: var(--icon-clr__primary);
+    }
+  }
   &.--addToCart {
     display: flex;
     align-items: center;
@@ -97,15 +122,9 @@
     }
     &.--inCart {
       fill: rgba(103, 255, 95, 0.7);
-      &:hover {
-        fill: rgba(255, 55, 55, 0.7);
-      }
     }
     &.--deleted {
       fill: rgba(255, 55, 55, 0.7);
-      &:hover {
-        fill: rgba(103, 255, 95, 0.7);
-      }
     }
   }
   // кнопка на карточці для миттєвої покупки
@@ -278,14 +297,6 @@
     & .btn-svg {
       width: 80%;
       height: 80%;
-    }
-    &:hover,
-    &:focus,
-    &:focus-visible {
-      fill: var(--brand_clr__1--accent);
-    }
-    &:active {
-      fill: var(--icon-clr__primary);
     }
   }
   &.--open-autorCardList {
