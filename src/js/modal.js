@@ -15,29 +15,29 @@ let { modalEl, closeModalBtn, modalContentEl, modalNameEl, ...otherRefs } =
 // * Функція зміни класу БЕКДРОП
 function toggleModal() {
   modalEl.classList.toggle('is-hidden');
-  closeModalBtn.addEventListener('click', closeModal);
+  closeModalBtn.addEventListener('click', toggleModal);
   if (modalEl.classList.contains('is-hidden')) {
     modalContentEl.textContent = '';
-    closeModalBtn.removeEventListener('click', closeModal);
+    closeModalBtn.removeEventListener('click', toggleModal);
   }
 }
-//* Закриває і чистить вміст модалки
-function closeModal() {
-  modalEl.classList.remove('is-hidden');
-  modalContentEl.textContent = '';
-  closeModalBtn.removeEventListener('click', closeModal);
-}
-//* Відкриває модалку і додає слухача подій на кнопку закриття
-function closeModal() {
-  modalEl.classList.add('is-hidden');
-  closeModalBtn.addEventListener('click', closeModal);
-}
+// //* Закриває і чистить вміст модалки
+// function closeModal() {
+//   modalEl.classList.remove('is-hidden');
+//   modalContentEl.textContent = '';
+//   closeModalBtn.removeEventListener('click', closeModal);
+// }
+// //* Відкриває модалку і додає слухача подій на кнопку закриття
+// function closeModal() {
+//   modalEl.classList.add('is-hidden');
+//   closeModalBtn.addEventListener('click', closeModal);
+// }
 // * Функція створення модалки
 function createModalContent(target, callback) {
   console.log(target);
 
   // * Навішується слухач подій на кнопку закриття модалки
-  closeModalBtn.addEventListener('click', closeModal);
+  closeModalBtn.addEventListener('click', toggleModal);
 
   //! тестове наповнення модалки
   if (callback === undefined) {
@@ -49,7 +49,7 @@ function createModalContent(target, callback) {
       <p>*</p>
       <p>*</p>
       <p>*</p>
-      тут буде вставлений текст колбек функції
+      Доброго вечора ми з України!
       <p>*</p>
       <p>*</p>
       <p>*</p>
@@ -84,7 +84,7 @@ function onShowAutorCardsBtnClick(arrayForFinding) {
         el => el.postId === refs.idForFind
       );
       toggleModal();
-      // createModalContent(target);
+      createModalContent();
       console.log(refs.autorCardsList);
 
       return;
