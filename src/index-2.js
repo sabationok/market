@@ -13,6 +13,7 @@ let Obj = {
 };
 
 // ? Запуск фунції
+// createautorsZone(Obj);
 createautorsZone(Obj);
 // * ===== створюємо сторінку публікацій
 function createautorsZone(pageObject) {
@@ -85,7 +86,7 @@ function createAutorEl(autorDataObject, postCardsDataArr) {
           </ul>
         </div>
         
-        <button class="button --open-autorCardList" data-show-all-cards="${autorId}">
+        <button class="button --open-autorCardList" id="${autorId}" data-autor-id="${autorId}">
           <svg class="btn-svg">
             <use href="${sprite_market}#icon-menu-3"></use>
           </svg>

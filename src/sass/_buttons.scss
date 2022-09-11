@@ -88,8 +88,7 @@
       height: 24px;
     }
     &:hover,
-    &:focus
-     {
+    &:focus {
       fill: var(--brand_clr__1--accent);
     }
     &:active {
@@ -113,8 +112,7 @@
       height: 24px;
     }
     &:hover,
-    &:focus
-     {
+    &:focus {
       fill: var(--brand_clr__1--accent);
     }
     &:active {
@@ -227,7 +225,7 @@
     }
   }
   // кнопка закриття модального вікна
-  &.--close-modal {
+  /*&.--close-modal {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -245,10 +243,42 @@
 
     fill: black;
     transition: box-shadow var(--anim-main-timing-function);
-    & svg {
+    & .btn-svg {
       fill: black;
       width: 12px;
       height: 12px;
+    }
+  }*/
+  &.--close-modal {
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    align-self: flex-start;
+
+    width: 30px;
+    height: 30px;
+
+    background-color: #ffffff;
+
+    fill: black;
+    transition: box-shadow var(--anim-main-timing-function);
+
+    & .btn-svg {
+      width: 12px;
+      height: 12px;
+    }
+    &:hover,
+    &:focus {
+      fill: var(--brand_clr__1--accent);
+      background-color: rgba(225, 225, 225, 0.3);
+    }
+    &:active{
+      background-color: rgba(225, 225, 225, 0.6);
     }
   }
   // кнопка фільтру карток у автора

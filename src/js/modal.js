@@ -17,13 +17,14 @@ function toggleModal() {
   modalEl.classList.toggle('is-hidden');
   closeModalBtn.addEventListener('click', toggleModal);
   if (modalEl.classList.contains('is-hidden')) {
+    modalNameEl.textContent = '';
     modalContentEl.textContent = '';
     closeModalBtn.removeEventListener('click', toggleModal);
   }
 }
 
 // * Функція створення модалки
-function createModalContent(target, callback) {
+function createModalContent(callback, target) {
   console.log(target);
 
   // * Навішується слухач подій на кнопку закриття модалки
@@ -31,6 +32,7 @@ function createModalContent(target, callback) {
 
   //! тестове наповнення модалки
   if (callback === undefined) {
+    modalNameEl.textContent = `Тут буде назва`;
     modalContentEl.insertAdjacentHTML(
       'afterbegin',
       `
@@ -46,14 +48,44 @@ function createModalContent(target, callback) {
       <p>*</p>
       <p>*</p>
       `
+      
     );
     console.log('У модалку не передано кнаповнення');
-  } else {
-    callback(target, modalContentEl);
+    return
+  } else  if(callback !== undefined){
+    callback();
   }
 }
+//todo Функція роботи із корзиною
+onOpenCArtBtnClick();
+function onOpenCArtBtnClick() {
+  let openCartBtnEl = document.querySelector('.--showMyCart');
+  openCartBtnEl.addEventListener('click', () => {
+    toggleModal();
+    createModalContent(createModalCart);
+    function createModalCart() {
+      modalNameEl.textContent = `Корзина`;
+      modalContentEl.insertAdjacentHTML(
+        'afterbegin',
+        `
+      <p>*</p>
+      <p>*</p>
+      <p>*</p>
+      <p>*</p>
+      <p>*</p>
+      Тут буде вміст корзини
+      <p>*</p>
+      <p>*</p>
+      <p>*</p>
+      <p>*</p>
+      <p>*</p>
+      `
+      );
+    }
+  });
+}
 
-//todo Навішую слухача подій на кнопку на WINDOW для делегування події "CLICK" на кнопки карток
+//todo Навішую слухача подій на кнопку на document для делегування події "CLICK" на кнопки карток
 onShowAutorCardsBtnClick(autorsListData);
 function onShowAutorCardsBtnClick(arrayForFinding) {
   const refs = {
@@ -62,7 +94,7 @@ function onShowAutorCardsBtnClick(arrayForFinding) {
     targetEl: null,
   };
 
-  window.addEventListener('click', buttonEvent => {
+  document.addEventListener('click', buttonEvent => {
     let { target } = buttonEvent;
     if (!target.classList.contains('--open-autorCardList')) {
       return;
@@ -73,16 +105,34 @@ function onShowAutorCardsBtnClick(arrayForFinding) {
       refs.autorCardsList = arrayForFinding.filter(
         el => el.postId === refs.idForFind
       );
+      console.log(refs.idForFind);
       toggleModal();
-      createModalContent();
-      console.log(refs.autorCardsList);
-
+      createModalContent(createAutorListModal, target);
       return;
     }
   });
+  function createAutorListModal(autorId) {
+    modalNameEl.textContent = `Автор ${autorId}`;
+    modalContentEl.insertAdjacentHTML(
+      'afterbegin',
+      `
+    <p>*</p>
+    <p>*</p>
+    <p>*</p>
+    <p>*</p>
+    <p>*</p>
+    Тут будуть пости автора ${autorId}
+    <p>*</p>
+    <p>*</p>
+    <p>*</p>
+    <p>*</p>
+    <p>*</p>
+    `
+    );
+  }
 }
 
-//todo Навішую слухача подій на кнопку на WINDOW для делегування події "CLICK" на кнопки карток
+//todo Навішую слухача подій на кнопку на document для делегування події "CLICK" на кнопки карток
 onAllCardButtonsClick(postsListData);
 function onAllCardButtonsClick(arrayForFinding) {
   const refs = {
@@ -92,7 +142,7 @@ function onAllCardButtonsClick(arrayForFinding) {
     targetEl: null,
   };
 
-  window.addEventListener('click', buttonEvent => {
+  document.addEventListener('click', buttonEvent => {
     let { target } = buttonEvent;
     if (!target.classList.contains('button')) {
       return;
@@ -137,12 +187,12 @@ const btnActionsArr = [
     actionFoo: function userWantToBuyLater(cardId, cardDataObj, targetEl) {
       targetEl.classList.toggle('--inCart');
       if (targetEl.classList.contains('--inCart')) {
-        targetEl.classList.remove('--deleted')
+        targetEl.classList.remove('--deleted');
         alert(`Товар ar${cardId} додано до корзини.`);
         return;
-      };
-      targetEl.classList.add('--deleted')
-      alert(`Товар ar${cardId} видалено із корзини.`)
+      }
+      targetEl.classList.add('--deleted');
+      alert(`Товар ar${cardId} видалено із корзини.`);
     },
   },
   {

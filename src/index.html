@@ -37,12 +37,14 @@
     <!-- МОДАЛЬНЕ ВІКНО -->
     <div class="backdrop is-hidden" data-modal>
       <div class="modal flex">
-        <button class="button --close-modal" type="button" data-modal-close>
-          <svg>
-            <use href="./images/sprite_market.svg#icon-cross"></use>
-          </svg>
-        </button>
-        <span class="modal-name js-modal-name"> Назва модального вікна </span>
+        <div class="modal-top">
+          <span class="modal-name js-modal-name"> Назва модального вікна </span>
+          <button class="button --close-modal" type="button" data-modal-close>
+            <svg class="btn-svg">
+              <use href="./images/sprite_market.svg#icon-cross"></use>
+            </svg>
+          </button>
+        </div>
         <div class="modal-overflow js-modal-overflow">
           <div class="modal-content js-modal-content"></div>
         </div>
@@ -56,10 +58,10 @@
     <!-- script local -->
     <script type="module" src="./index.js"></script>
     <script type="module" src="./js/slick.js"></script>
-    
+
     <script type="module" src="./index-2.js"></script>
     <script type="module" src="./js/modal.js"></script>
-    <script type="module" src="./js/allBtnsClick.js" ></script>
+    <script type="module" src="./js/allBtnsClick.js"></script>
 
     <!-- <script type="module" src="./js-looks.js"></script> -->
     <!-- <script type="module" src="./js-lookCard.js"></script> -->
