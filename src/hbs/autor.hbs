@@ -1,0 +1,30 @@
+<div class="section__autorTop">
+    <div class="slick__container">
+      <div class="autorZone__header">
+        <a class="autorZone__logoBox" href=""> 
+          <img class="autorZone__logoImg" src="{{autorlogoLink}}" alt="{{autorType}} logo" >
+        </a>
+        <div class="autorZone__autorInfo">
+          <span  class="autorZone__autorName">
+            {{autorName}}
+          </span>
+          <ul class="autorZone__autorInfo-list">
+            <li>Повна назва: {{autorName}}</li>
+            <li>Тип: {{autorType}}</li>
+            <li>ID: {{autorId}}</li>
+          </ul>
+        </div>
+        
+        <button class="button --open-autorCardList" id="{{postId}}" data-autor-id="{{postId}}">
+          <svg class="btn-svg">
+            {{!-- <use href="${sprite_market}#icon-menu-3"></use> --}}
+            <use href="./images/sprite_market.svg#icon-menu-3"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="slick__brands-slider" data-autor-id="{{autorId}}" data-autor-type="{{autorType}}">
+
+      </div>
+    </div>
+  </div>
+ 

@@ -5,15 +5,17 @@ $(document).ready(function () {
     dots: true,
     infinite: true,
     arrows: false,
-    // arrows: false,
+    arrows: true,
+    // centerMode: true,
+    // centerPadding: '0',
     slidesToShow: 3,
     slidesToScroll: 1,
 
-   responsive: [
+    responsive: [
       {
         breakpoint: 1100,
         settings: {
-          arrows: false,
+          arrows: true,
           // centerMode: true,
           // centerPadding: '40px',
           slidesToShow: 2,
@@ -36,4 +38,3 @@ $(document).ready(function () {
     nextArrow: '<button type="button" class="slick-next">&#62;</button>',
   });
 });
-

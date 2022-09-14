@@ -25,7 +25,7 @@ function toggleModal() {
 
 // * Функція створення модалки
 function createModalContent(callback, target) {
-  console.log(target);
+  // console.log(target);
 
   // * Навішується слухач подій на кнопку закриття модалки
   closeModalBtn.addEventListener('click', toggleModal);
@@ -48,11 +48,10 @@ function createModalContent(callback, target) {
       <p>*</p>
       <p>*</p>
       `
-      
     );
     console.log('У модалку не передано кнаповнення');
-    return
-  } else  if(callback !== undefined){
+    return;
+  } else if (callback !== undefined) {
     callback();
   }
 }
@@ -105,7 +104,7 @@ function onShowAutorCardsBtnClick(arrayForFinding) {
       refs.autorCardsList = arrayForFinding.filter(
         el => el.postId === refs.idForFind
       );
-      console.log(refs.idForFind);
+      // console.log(refs.idForFind);
       toggleModal();
       createModalContent(createAutorListModal, target);
       return;
@@ -131,7 +130,12 @@ function onShowAutorCardsBtnClick(arrayForFinding) {
     );
   }
 }
-
+let actions = {
+  share: 'foo share',
+  like:'foo like',
+  save: 'foo save',
+  comment: 'foo comment',
+};
 //todo Навішую слухача подій на кнопку на document для делегування події "CLICK" на кнопки карток
 onAllCardButtonsClick(postsListData);
 function onAllCardButtonsClick(arrayForFinding) {
@@ -150,6 +154,17 @@ function onAllCardButtonsClick(arrayForFinding) {
       refs.buttonActionType = Object.keys(target.dataset).join('');
       refs.idForFind = Object.values(target.dataset).join('');
       refs.targetEl = target;
+let keyName = target.dataset.action
+
+
+      // console.log(target.dataset.action);
+      console.log(target.dataset.cardId);
+      // console.log(target.id);
+
+      // console.log(refs.buttonActionType);
+      console.log("=====",actions[`${keyName}`]);
+      // console.log(refs.idForFind);
+
       refs.foundedCardDataObj = arrayForFinding.find(
         el => el.postId === refs.idForFind
       );

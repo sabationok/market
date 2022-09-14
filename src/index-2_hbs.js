@@ -1,7 +1,9 @@
 import { autorsListData } from './js-data/autorsList';
 import { postsListData } from './js-data/postsList';
 import sprite_market from './images/sprite_market.svg';
+import  autor  from './hbs/autor.hbs';
 
+// console.log(postsListData.length);
 // console.log('Список авторів', autorsListData);
 // console.log(postsListData);
 
@@ -13,10 +15,10 @@ let Obj = {
 };
 
 // ? Запуск фунції
-// createautorsZone(Obj);
-createautorsZone(Obj);
+// creatAautorsZone(Obj);
+createAutorsZone(Obj);
 // * ===== створюємо сторінку публікацій
-function createautorsZone(pageObject) {
+function createAutorsZone(pageObject) {
   let {
     sectionClass = '',
     autorsArr = [],
@@ -27,14 +29,15 @@ function createautorsZone(pageObject) {
   // * Куди саме вставляти
   let pageContainerEl = document.querySelector(sectionClass);
   // * Готова для вставки початкова сторінка, далі тільки доповнювати
-  let allInText = autorsArr
+  let allAutorsInText = autorsArr
     .map(el => createAutorEl(el, postCardsDataArr))
     .join('');
 
+  // let allAutorsInText_HBS = autorsArr.map(el => autor(el)).join('');
+  // console.log(allAutorsInText_HBS);
   // * ===== Вставляю все що створене на сторінку
-  pageContainerEl.insertAdjacentHTML('afterbegin', allInText);
+  pageContainerEl.insertAdjacentHTML('afterbegin', allAutorsInText);
 }
-
 // * ===== створюю одного публікатора
 function createAutorEl(autorDataObject, postCardsDataArr) {
   let {
@@ -49,21 +52,26 @@ function createAutorEl(autorDataObject, postCardsDataArr) {
   const filteredPostCardsDataArr = [];
 
   // * Фільтруємо загальний масив на основі списку постів автора
-  filterArrByArr(autorPostCardsIdList, postCardsDataArr);
-  function filterArrByArr(postsArray, arrayForFinding) {
+  filterArrByArr(
+    autorPostCardsIdList,
+    postCardsDataArr,
+    filteredPostCardsDataArr,
+  );
+// console.log(autorPostCardsIdList);
+  //* Функція яка фільтрує масив згідно масиву, по ID картки
+  function filterArrByArr(autorPostCardsArr = [], arrayForFinding=[], arrayForPushing=[] ) {
+
     // * Проміжний результат зберігається тут
     let foundedPost = {};
-    for (let i = 0; i < postsArray.length; i += 1) {
-      foundedPost = arrayForFinding.find(post => post.postId === postsArray[i]);
-
-      // todo Перевірка
+    for (let i = 0; i < autorPostCardsArr.length; i += 1) {
+      foundedPost = arrayForFinding.find(post => post.postId === autorPostCardsArr[i]);
+      // * Перевірка
       if (foundedPost !== undefined) {
-        filteredPostCardsDataArr.push(foundedPost);
+        arrayForPushing.push(foundedPost);
       }
     }
   }
-
-  // todo ===== Тут зберігається шаблон усього списку постів готовий для вставки
+  // * Тут зберігається шаблон усього списку постів готовий для вставки
   let cardListArrayInText = filteredPostCardsDataArr.map(el =>
     createPostCardComp(el)
   );
@@ -86,7 +94,7 @@ function createAutorEl(autorDataObject, postCardsDataArr) {
           </ul>
         </div>
         
-        <button class="button --open-autorCardList" id="${autorId}" data-autor-id="${autorId}">
+        <button class="button --open-autorCardList" id="${autorId}" data-autor-id="${autorId}" data-action="showAutrorCards">
           <svg class="btn-svg">
             <use href="${sprite_market}#icon-menu-3"></use>
           </svg>
@@ -98,8 +106,7 @@ function createAutorEl(autorDataObject, postCardsDataArr) {
     </div>
   </div>
   `;
-}
-
+};
 // ? Функція для створення картки
 function createPostCardComp(cardInfoObject) {
   let {
@@ -120,7 +127,7 @@ function createPostCardComp(cardInfoObject) {
   // let lookDetailsTableComp = createDetailsTableComp(cardInfoObject);
   // let cardSocialsComp = createCardSocialsComp(socialsLinkList);
   return `
-  <div class="card --3 js-post-card" data-post-id="${postId}">
+  <div class="card --3 js-post-card" data-card-id="${postId}">
     <div class="card --main">
       <!-- //* main image -->
       <div class="card-img__container" style="width: 100%; min-height: 320px">
@@ -135,7 +142,7 @@ function createPostCardComp(cardInfoObject) {
       <!-- //? img overlay -->
       <div class="card --main--overlay">
         <!-- //* деталі карти -->
-        <button class="button --pull-img-overlay" type="button" data-show-details="${postId}">Деталі
+        <button class="button --pull-img-overlay" type="button" data-action="showDetails" data-card-id="${postId}">Деталі
           <svg class="btn-svg">
             <use href="${sprite_market}#icon-list"></use>
           </svg>
@@ -149,7 +156,7 @@ function createPostCardComp(cardInfoObject) {
         </div>
 
         <!-- //* фотографії  -->
-        <button class="button --pull-img-overlay" type="button"  data-show-fotos="${postId}">Фото
+        <button class="button --pull-img-overlay" type="button"  data-action="showFotos" data-card-id="${postId}">Фото
           <svg class="btn-svg">
             <use href="${sprite_market}#icon-images"></use>
           </svg>
@@ -161,7 +168,7 @@ function createPostCardComp(cardInfoObject) {
         </div>
 
         <!-- //* розмірна сітка -->
-        <button class="button --pull-img-overlay" type="button" data-show-sizes="${postId}">Розміри
+        <button class="button --pull-img-overlay" type="button" data-action="showSizes" data-card-id="${postId}">Розміри
           <svg class="btn-svg">
             <use href="${sprite_market}#icon-table"></use>
           </svg>
@@ -189,12 +196,12 @@ function createPostCardComp(cardInfoObject) {
         </div>
 
         <div class="card__actions-box">
-          <button class="button --card-action" data-action-comment="${postId}">
+          <button class="button --card-action" data-action="comment" data-card-id="${postId}">
             <svg class="btn-svg">
               <use href="${sprite_market}#icon-comment-o"></use>
             </svg>
           </button>
-          <button class="button --card-action" data-action-like="${postId}">
+          <button class="button --card-action" data-action="like" data-card-id="${postId}">
             <svg class="btn-svg">
               <use href="${sprite_market}#icon-heart-o"></use>
             </svg>
@@ -205,7 +212,7 @@ function createPostCardComp(cardInfoObject) {
               <use href="${sprite_market}#icon-bookmark-o"></use>
             </svg>
           </button>
-          <button class="button --card-action" data-action-share="${postId}">
+          <button class="button --card-action" data-action="share" data-card-id="${postId}">
             <svg class="btn-svg">
               <use href="${sprite_market}#icon-share"></use>
             </svg>
@@ -225,12 +232,12 @@ function createPostCardComp(cardInfoObject) {
 
         <!-- //* кнопки "Купити" і "Кошик" -->
         <div class="card__forBuyBtns-box">
-          <button class="button --addToCart" type="button" data-buy-later="${postId}">
+          <button class="button --addToCart" type="button" data-action="buyLater" data-card-id="${postId}">
             <svg class="btn-svg">
               <use href="${sprite_market}#icon-shopping-cart"></use>
             </svg>
           </button>
-          <button class="button --buyNow" type="button" data-buy-now="${postId}">
+          <button class="button --buyNow" type="button" data-action="buyNow" data-card-id="${postId}">
             Купити
           </button>
         </div>
@@ -240,44 +247,3 @@ function createPostCardComp(cardInfoObject) {
   </div>
   `;
 }
-
-// ? Функція для створення соціальних лінків
-function createCardSocialsComp(socialsLinkList) {
-  let {
-    instagramLink = '',
-    pinterestLink = '',
-    youTubeLink = '',
-    tikTokLink = '',
-    ...otherLinks
-  } = socialsLinkList;
-  return `
-  <li class="card__social-item">
-    <a class="card__social-link" href="${instagramLink}">
-      <svg class="link-svg">
-        <use href="${sprite_market}#icon-instagram-1"></use>
-      </svg>
-    </a>
-  </li>
-  <li class="card__social-item">
-    <a class="card__social-link" href="${pinterestLink}">
-      <svg class="link-svg">
-        <use href="${sprite_market}#icon-pinterest2"></use>
-      </svg>
-    </a>
-  </li>
-  <li class="card__social-item">
-    <a class="card__social-link" href="${tikTokLink}">
-      <svg class="link-svg">
-        <use href="${sprite_market}#icon-tiktok"></use>
-      </svg>
-    </a>
-  </li>
-  <li class="card__social-item">
-    <a class="card__social-link" href="${youTubeLink}">
-      <svg class="link-svg">
-        <use href="${sprite_market}#icon-youtube-play"></use>
-      </svg>
-    </a>
-  </li>
-  `;
-};

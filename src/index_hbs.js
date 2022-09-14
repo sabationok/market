@@ -1,6 +1,6 @@
-import { autorsListData } from './js-data/autorsList';
-import { postsListData } from './js-data/postsList';
-import sprite_market from './images/sprite_market.svg';
+// import { autorsListData } from './js-data/autorsList';
+// import { postsListData } from './js-data/postsList';
+// import sprite_market from './images/sprite_market.svg';
 
 // console.log('Список авторів', autorsListData);
 // console.log(postsListData);
