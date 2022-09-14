@@ -1,1 +1,0 @@
-{"mappings":"oeAAAA,EAAA,S","sources":["src/js/allBtnsClick.js"],"sourcesContent":["import { autorsListData } from '../js-data/autorsList';\nimport { postsListData } from '../js-data/postsList';\n\n\n"],"names":["parcelRequire"],"version":3,"file":"index.f757ec69.js.map"}
