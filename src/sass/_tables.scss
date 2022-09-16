@@ -1,0 +1,110 @@
+.table {
+  &.--modalCart-grid {
+    & .tbody {
+      // border-bottom: 1px solid rgba(221, 221, 221, 0.2);
+      &.--tbody-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+    & .row {
+      &.--card {
+        border-bottom: 1px solid rgba(221, 221, 221, 0.2);
+        transition: all var(--timing-function__main);
+        &:hover{
+          box-shadow: 0 0 0 5px rgba(121, 121, 121, 0.1);
+        }
+      }
+      &.cardInfo-grid {
+        display: grid;
+        grid-template-columns: 60px 2fr 1fr;
+        align-items: center;
+
+        background-color: rgba(221, 221, 221, 0.2);
+
+        & .--cardTotal {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+
+          align-items: center;
+        }
+      }
+      &.item-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+
+        font-size: 12px;
+      }
+      &-grid {
+        &.titles {
+          display: grid;
+          grid-template-columns: 2fr 2fr 2fr 1fr;
+        }
+        &.item-info {
+          display: grid;
+          grid-template-columns: 2fr 2fr 2fr 1fr;
+          min-height: 35px;
+          align-items: center;
+        }
+      }
+      & .card-items {
+        border: 1px solid rgba(221, 221, 221, 0.5);
+      }
+    }
+    & .col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      padding: 4px;
+
+      &.--setQuantity {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
+      }
+      &.element-sku {
+      }
+      &-title {
+        font-size: 14px;
+      }
+      &-text {
+        text-align: right;
+      }
+      &.--1 {
+      }
+      &.--6 {
+      }
+    }
+    .button {
+      &.--btnTableMinus {
+      }
+      &.--btnTablePlus {
+      }
+    }
+    .input {
+      width: 100%;
+      
+      text-align: center;
+
+      border-style: none;
+      border-bottom: 2px solid rgba(221, 221, 221, 0.4);
+
+      transition: all var(--timing-function__main);
+      &:focus{
+        border-style: none;
+        outline-style: none;
+        border-bottom: 2px solid var(--brand_clr__1--accent);
+      }
+      
+      &.--selectAtribute {
+      }
+      &.--inputQuantity {
+      }
+    }
+  }
+}

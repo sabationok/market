@@ -5,7 +5,7 @@ $(document).ready(function () {
     dots: true,
     infinite: true,
     arrows: false,
-    arrows: true,
+    arrows: false,
     // centerMode: true,
     // centerPadding: '0',
     slidesToShow: 3,
@@ -15,7 +15,7 @@ $(document).ready(function () {
       {
         breakpoint: 1100,
         settings: {
-          arrows: true,
+          arrows: false,
           // centerMode: true,
           // centerPadding: '40px',
           slidesToShow: 2,
