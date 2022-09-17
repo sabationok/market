@@ -19,6 +19,7 @@ body {
   background-color: #ffffff;
   margin: 0;
 }
+
 .outline {
   outline: var(--testing-brdr-wght) solid var(--testing-brdr-clr);
 }
@@ -134,6 +135,9 @@ button {
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+.--notScrolled{
   overflow: hidden;
 }
 

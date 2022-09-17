@@ -1,9 +1,10 @@
 import sprite_market from '../images/sprite_market.svg';
+import modal_base from '../hbs/modal_base.hbs';
 import { autorsListData } from '../js-data/autorsList';
 import { postsListData } from '../js-data/postsList';
-import localstorage from './localstorage';
 import { plugins } from './plugins';
 import { cartObj } from './cart';
+import localstorage from './localstorage';
 import cart from '../hbs/cart.hbs';
 import simpleOrderForm from '../hbs/simpleOrderForm.hbs';
 
@@ -13,11 +14,13 @@ localstorage.save('cartContent', cartContentArr);
 
 //* Знаходжу усі необхідні елементи для створення і управління модалкою
 const refs = {
+  mainContainerEl: document.querySelector('.js-postList'),
   modalEl: document.querySelector('[data-modal]'),
   modalNameEl: document.querySelector('.js-modal-name'),
   modalContentEl: document.querySelector('.js-modal-content'),
   closeModalBtn: document.querySelector('[data-action="closeModal"]'),
   openCartBtnEl: document.querySelector('[data-action="openModal"]'),
+  bodyEl: document.body,
 };
 // * Деструктуризація для зручності звернення до змінних
 let {
@@ -26,6 +29,8 @@ let {
   modalContentEl,
   modalNameEl,
   openCartBtnEl,
+  mainContainerEl,
+  bodyEl,
   ...otherRefs
 } = refs;
 
@@ -49,8 +54,28 @@ function buttonEvent(event) {
   }
 }
 actionsBtnClickON();
-
-// Функція із функціями які відповідаються кнопкам
+function onBackdropClick(event) {
+  let { target, currentTarget } = event;
+  if (target === currentTarget) {
+    closeModal();
+  }
+}
+function toggleModal() {
+  modalEl.classList.toggle('is-hidden');
+  bodyEl.classList.toggle('--notScrolled');
+  modalEl.addEventListener('click', onBackdropClick);
+}
+function closeModal() {
+  modalEl.classList.toggle('is-hidden');
+  bodyEl.classList.remove('--notScrolled');
+  if (modalEl.classList.contains('is-hidden')) {
+    modalNameEl.innerHTML = '';
+    modalContentEl.innerHTML = '';
+    modalContentEl.classList.remove('--emptyCartContent');
+    modalEl.removeEventListener('click', onBackdropClick);
+  }
+}
+// Функція із функціями які відповідають ся кнопкам
 function startBtnAction(actionName, targetEl, event) {
   let transferData = {
     cardId: targetEl.dataset.cardId,
@@ -64,41 +89,13 @@ function startBtnAction(actionName, targetEl, event) {
   );
   //* обєкт із функціями кнопок
   let btnActions = {
-    toggleModal: function onAnyModalOpenBtnClick() {
-      modalEl.classList.toggle('is-hidden');
-
-      if (modalEl.classList.contains('is-hidden')) {
-        modalNameEl.textContent = '';
-        modalContentEl.textContent = '';
-        modalNameEl.innerHTML = '';
-        modalContentEl.innerHTML = '';
-      }
-    },
-    closeModal: function onCloseModalBtnClick() {
-      modalEl.classList.toggle('is-hidden');
-
-      if (modalEl.classList.contains('is-hidden')) {
-        modalNameEl.textContent = '';
-        modalContentEl.textContent = '';
-        modalNameEl.innerHTML = '';
-        modalContentEl.innerHTML = '';
-        modalContentEl.classList.remove('--emptyCartContent');
-      }
-    },
+    toggleModal: toggleModal,
+    closeModal: closeModal,
     showAutrorCards: function onShowAutorCardsBtnClick(transferData) {
       let { cardId, autorId, targetEl, cardObject } = transferData;
 
       this.toggleModal();
-      createModalContent(transferData, createAutorListModal);
-
-      function createAutorListModal(transferData) {
-        let { cardId, autorId, targetEl, cardObject } = transferData;
-        modalNameEl.textContent = `Автор ${autorId}`;
-        modalContentEl.insertAdjacentHTML(
-          'afterbegin',
-          `Тут будуть пости автора ${autorId}`
-        );
-      }
+      createModalContent(transferData, 'showAotorPostsList');
     },
     showMyCart: function onOpenCartBtnClick(transferData) {
       let { cardId, autorId, targetEl, cardObject } = transferData;
@@ -195,12 +192,6 @@ function startBtnAction(actionName, targetEl, event) {
 // * Функція створення модалки
 // createModalContent({}, 'openCart');
 function createModalContent(transferData, callback) {
-  let { cardId, autorId, targetEl, cardObject } = transferData;
-  // console.log(targetEl);
-  // console.log(cardObject);
-
-  //! postsListData
-
   if (callback === undefined) {
     modalNameEl.innerHTML = `Тут буде назва`;
     modalContentEl.innerHTML = 'Тут буде вміст';
@@ -208,70 +199,67 @@ function createModalContent(transferData, callback) {
     return;
   } else if (callback !== undefined) {
     modalCallbacks(callback);
-    // console.log(callback);
   }
-
+  /*function onBackdropClick(event) {
+    let { target, currentTarget } = event;
+    if (target === currentTarget) {
+      closeModal();
+    }
+  }
   function toggleModal() {
     modalEl.classList.toggle('is-hidden');
-    if (modalEl.classList.contains('is-hidden')) {
-      modalNameEl.textContent = '';
-      modalContentEl.textContent = '';
-      modalNameEl.innerHTML = '';
-      modalContentEl.innerHTML = '';
-    }
+    bodyEl.classList.toggle('--notScrolled');
+    modalEl.addEventListener('click', onBackdropClick);
   }
   function closeModal() {
     modalEl.classList.toggle('is-hidden');
+    bodyEl.classList.remove('--notScrolled');
     if (modalEl.classList.contains('is-hidden')) {
-      modalNameEl.textContent = '';
-      modalContentEl.textContent = '';
       modalNameEl.innerHTML = '';
       modalContentEl.innerHTML = '';
       modalContentEl.classList.remove('--emptyCartContent');
+      modalEl.removeEventListener('click', onBackdropClick);
     }
-  }
+  }*/
   function modalCallbacks(callback) {
+    let cartFormEl = null;
     let modalActions = {
+      modalFormSubmit: function onModalFormSubmitBtClick(event) {
+        event.preventDefault();
+
+        closeModal();
+        // cartFormEl.removeEventListener('submit', modalActions.modalFormSubmit);
+        console.log(
+          'Відправляється запит POST із інфо про замовлення покупцяю'
+        );
+        alert(
+          `Замовлення сформовано. Очікуйте на інформацію у вашому особистому кабінеті. Дякуємо що ви з нами.`
+        );
+      },
+      modalFormReset: function onModalFormResetBtClick() {
+        // cartFormEl.removeEventListener('reset', modalActions.modalFormReset);
+        closeModal();
+      },
       openCart: function createModalCart() {
         let cartContentArr = localstorage.load('cartContent');
-        let cartContentObjArr;
+        let cartContentObjArr = [];
         if (cartContentArr !== undefined) {
-          console.log(cartContentArr);
-
           plugins.filterArrByArr(
             cartContentArr,
             postsListData,
             cartContentObjArr
           );
-          console.log(
-            'Товари у корзині готові для відмальовки',
-            cartContentObjArr
-          );
 
           toggleModal();
-
           modalNameEl.textContent = `Корзина`;
           modalContentEl.innerHTML = cart();
 
-          function addEventListeners() {}
-          addEventListeners();
+          cartFormEl = modalContentEl.querySelector('.js-modal-form');
+          // function addEventListeners() {}
+          // addEventListeners();
 
-          let cartForm = modalContentEl.querySelector('.js-modal-form');
-          cartForm.addEventListener('submit', event => {
-            event.preventDefault();
-            localstorage.remove('cartContent');
-            closeModal();
-
-            console.log(
-              'Відправляється запит POST із інфо про замовлення покупцяю'
-            );
-            alert(
-              `Замовлення сформовано. Очікуйте на інформацію у вашому особистому кабінеті. Дякуємо що ви з нами.`
-            );
-          });
-          cartForm.addEventListener('reset', event => {
-            // closeModal();
-          });
+          cartFormEl.addEventListener('submit', this.modalFormSubmit);
+          cartFormEl.addEventListener('reset', this.modalFormReset);
 
           return;
         } else {
@@ -300,13 +288,13 @@ function createModalContent(transferData, callback) {
         modalContentEl.innerHTML = simpleOrderForm(cardObject);
 
         let cartForm = modalContentEl.querySelector('.js-modal-form');
-        cartForm.addEventListener('submit', event => {
-          event.preventDefault();
-          closeModal();
-        });
-        cartForm.addEventListener('reset', event => {
-          closeModal();
-        });
+        cartForm.addEventListener('submit', this.modalFormSubmit);
+        cartForm.addEventListener('reset', this.modalFormReset);
+      },
+      showAotorPostsList: function createModalAutorList(transferData) {
+        let { cardId, autorId, targetEl, cardObject } = transferData;
+        modalNameEl.innerHTML = `Автор ${autorId}`;
+        modalContentEl.innerHTML =`Тут будуть пости автора ${autorId}`;
       },
     };
     modalActions[`${callback}`](transferData);
