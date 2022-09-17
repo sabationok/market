@@ -6,8 +6,8 @@ import { plugins } from './plugins';
 import { cartObj } from './cart';
 import cart from '../hbs/cart.hbs';
 let cartContentArr = [];
-cartContentArr.push('102-2222')
-localstorage.save('cartContent', cartContentArr)
+cartContentArr.push('102-2222');
+localstorage.save('cartContent', cartContentArr);
 
 //* Знаходжу усі необхідні елементи для створення і управління модалкою
 const refs = {
@@ -28,22 +28,25 @@ let {
 } = refs;
 
 //* Функція яка віслідковує усі події із кнопками
-function onActionsBtnClick() {
-  document.addEventListener('click', event => {
-    let { target } = event;
-    let btnAction = null;
-    let targetEl = null;
-    if (!target.classList.contains('button')) {
-      return;
-    } else if (target !== undefined && btnAction !== undefined) {
-      btnAction = target.dataset.action;
-      targetEl = target;
-      startBtnAction(btnAction, targetEl);
-      return;
-    }
-  });
+function actionsBtnClickON() {
+  document.addEventListener('click', buttonEvent);
 }
-onActionsBtnClick();
+function actionsBtnClickOFF() {
+  document.removeEventListener('click', buttonEvent);
+}
+function buttonEvent(event) {
+  let { target } = event;
+  let btnAction = target.dataset.action;
+  let targetEl = null;
+  if (!target.classList.contains('button')) {
+    return;
+  } else if (target !== undefined && btnAction !== undefined) {
+    targetEl = target;
+    startBtnAction(btnAction, targetEl);
+    return;
+  }
+}
+actionsBtnClickON()
 
 // Функція із функціями які відповідаються кнопкам
 function startBtnAction(actionName, targetEl) {
@@ -66,7 +69,6 @@ function startBtnAction(actionName, targetEl) {
         modalContentEl.textContent = '';
         modalNameEl.innerHTML = '';
         modalContentEl.innerHTML = '';
-
       }
     },
     closeModal: function onCloseModalBtnClick() {
@@ -78,7 +80,6 @@ function startBtnAction(actionName, targetEl) {
         modalNameEl.innerHTML = '';
         modalContentEl.innerHTML = '';
         modalContentEl.classList.remove('--emptyCartContent');
-
       }
     },
     showAutrorCards: function onShowAutorCardsBtnClick(transferData) {
@@ -185,6 +186,9 @@ function startBtnAction(actionName, targetEl) {
         `Замовлення на товар art${cardObject.articul}, "${cardObject.postName}" сформовано. Очікуйте на інформацію у вашому особистому кабінеті. Дякуємо що ви з нами.`
       );
     },
+    createSimpleOrder: function onCreateOrderBtnClick() {
+      console.log('onCreateOrderBtnClick');
+    },
   };
   btnActions[`${actionName}`](transferData);
 }
@@ -232,25 +236,31 @@ function createModalContent(transferData, callback) {
         let cartContentArr = localstorage.load('cartContent');
         let cartContentObjArr;
         //! тут має бути запит на сервер за даними про товари додані у корзину
-        if (cartContentArr !== undefined){
-          console.log("Товари у корзині готові для відмальовки",cartContentObjArr);
+        if (cartContentArr !== undefined) {
+          console.log(
+            'Товари у корзині готові для відмальовки',
+            cartContentObjArr
+          );
 
           plugins.filterArrByArr(
             cartContentArr,
             postsListData,
             cartContentObjArr
           );
-  
+
           toggleModal();
-  
+
           modalNameEl.textContent = `Корзина`;
           modalContentEl.innerHTML = cart();
-          return
+
+          function addEventListeners() {}
+          addEventListeners();
+          return;
         } else {
           toggleModal();
           modalNameEl.textContent = `Корзина`;
           modalContentEl.innerHTML = 'Ви не додали жодного товару у корзину';
-          modalContentEl.classList.add('--emptyCartContent')
+          modalContentEl.classList.add('--emptyCartContent');
         }
       },
       buyNow: function createModalToBuyNow(transferData) {
