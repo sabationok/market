@@ -5,24 +5,24 @@
       <div class='row --card' data-card-id=''>
         <div class='row cardInfo-grid'>
           <div class='col --cardImg' data-title='img'><img
-              src='https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/looks/look_1__2x.webp'
+              src='{{mainImgLink}}'
               alt=''
             /></div>
           <div class='col --cardInfo' data-title='info'>
             <span class='col-title' data-title='sku'>Артикул:</span>
-            <span class='col-text'>art25252525</span>
+            <span class='col-text'>art{{articul}}</span>
             <span class='col-title'>Автор:</span>
-            <span class='col-text' data-title='autorId'>lookMaker-217</span>
+            <span class='col-text' data-title='autorId'>{{postAutorId}}</span>
             <span class='col-title'>Назва:</span>
-            <span class='col-text' data-title='name'>Комплект 0245</span>
+            <span class='col-text' data-title='name'>{{postName}}</span>
           </div>
           <div class='col --cardTotal' data-title='total'>
             <span class='col-title'>Ціна:</span>
-            <span class='col-text'>6000</span>
+            <span class='col-text'>{{price}}</span>
             <span class='col-title'>Знижка:</span>
-            <span class='col-text'>500</span>
+            <span class='col-text'>0</span>
             <span class='col-title'>Сума:</span>
-            <span class='col-text'>5500</span>
+            <span class='col-text'>{{price}}</span>
           </div>
         </div>
         <div class='row-grid titles'>
@@ -35,8 +35,8 @@
           <div class='row card-item'>
             <span class='row item-top'>
               <span>Елемент № 1,</span>
-              <span class='element-sku'>art356984,</span>
-              <span class='element-name'>"Назва елементу"</span>
+              <span class='element-sku'>art{{articul}},</span>
+              <span class='element-name'>"{{postName}}"</span>
             </span>
             <div class='row-grid item-info'>
 
@@ -70,7 +70,7 @@
               </div>
 
               <div class='col' data-title='price'>
-                <span class='col-text'>3000</span>
+                <span class='col-text'>{{price}}</span>
               </div>
             </div>
           </div>
@@ -79,12 +79,18 @@
 
     </div>
   </div>
-  <button
-    class='button --makeOrder'
-    type='submit'
-    data-action='createSimpleOrder'
-    data-card-id=''
-  />
-    Оформити замовлення
-  </button>
+  <div class='--formDecision'>
+    <button
+      class='button --makeOrder'
+      type='submit'
+      data-action='createOrder'
+    >Оформити замовлення
+    </button>
+    <button
+      class='button --killOrder'
+      type='reset'
+      data-action='killOrder'
+    >Відмінити
+    </button>
+  </div>
 </form>

@@ -70,7 +70,7 @@
       }
     }
   }
-  // кнопки КОРЗИНИ
+  // кнопки КУПІВЛІ
   &.--showMyCart {
     display: flex;
     align-items: center;
@@ -125,7 +125,6 @@
       fill: rgba(255, 55, 55, 0.7);
     }
   }
-  // кнопка на карточці для миттєвої покупки
   &.--buyNow {
     font-size: 20px;
     font-weight: 500;
@@ -148,12 +147,13 @@
     }
   }
   &.--makeOrder {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 500;
 
-    padding: 8px 16px;
+    padding: 6px 12px;
     color: #fff;
 
+    border-radius: 2px;
     background-color: var(--brand_clr__1--accent);
 
     &:hover,
@@ -166,7 +166,28 @@
       color: var(--brand_clr__1--accent);
       border-color: var(--brand_clr__1--accent);
     }
+    @media screen and (min-width: 480px){
+      font-size: 16px;
+      padding: 8px 16px;
+    }
   }
+  &.--killOrder {
+    font-size:14px;
+    font-weight: 500;
+
+    padding: 6px 12px;
+    color: var(--brand_clr__1--accent);
+
+    border-radius: 2px;
+    background-color: #fff;
+    border-color: var(--brand_clr__1--accent);
+
+    @media screen and (min-width: 480px){
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+  }
+
   //кнопка для відправки відгуку
   &.--send-feedback {
     font-weight: 500;
@@ -271,7 +292,7 @@
       fill: var(--brand_clr__1--accent);
       background-color: rgba(225, 225, 225, 0.3);
     }
-    &:active{
+    &:active {
       background-color: rgba(225, 225, 225, 0.6);
     }
   }

@@ -182,10 +182,12 @@ function startBtnAction(actionName, targetEl, event) {
       console.log(
         `Відправляється запит на сервер щодо створення швидкого замовлення на товар, та формується INVOICE на оплату товару`
       );
-      
     },
     createOrder: function onCreateOrderBtnClick(transferData) {
       console.log('onCreateOrderBtnClick');
+    },
+    killOrder: function onKillOrderBtnClick() {
+      console.log('kill order click');
     },
   };
   btnActions[`${actionName}`](transferData);
@@ -255,7 +257,7 @@ function createModalContent(transferData, callback) {
           function addEventListeners() {}
           addEventListeners();
 
-          let cartForm = modalContentEl.querySelector('.--modalCart');
+          let cartForm = modalContentEl.querySelector('.js-modal-form');
           cartForm.addEventListener('submit', event => {
             event.preventDefault();
             localstorage.remove('cartContent');
@@ -267,6 +269,9 @@ function createModalContent(transferData, callback) {
             alert(
               `Замовлення сформовано. Очікуйте на інформацію у вашому особистому кабінеті. Дякуємо що ви з нами.`
             );
+          });
+          cartForm.addEventListener('reset', event => {
+            closeModal();
           });
 
           return;
@@ -293,20 +298,15 @@ function createModalContent(transferData, callback) {
           ...others
         } = cardObject;
         modalNameEl.textContent = `Купити товар art${articul}`;
-        modalContentEl.innerHTML = simpleOrderForm();
+        modalContentEl.innerHTML = simpleOrderForm(cardObject);
 
         let cartForm = modalContentEl.querySelector('.js-modal-form');
         cartForm.addEventListener('submit', event => {
           event.preventDefault();
-
           closeModal();
-
-          console.log(
-            'Відправляється запит POST із інфо про замовлення покупця.'
-          );
-          alert(
-            `Замовлення сформовано. Очікуйте на інформацію у вашому особистому кабінеті. Дякуємо що ви з нами.`
-          );
+        });
+        cartForm.addEventListener('reset', event => {
+          closeModal();
         });
       },
     };

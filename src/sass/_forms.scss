@@ -11,4 +11,18 @@
     gap: 8px;
     padding: 8px 0;
   }
+  & .--formDecision {
+    display: flex;
+    gap: 8px;
+    padding: 0 8px;
+
+    & .--makeOrder{
+      flex-basis: 100px;
+      flex-grow: 2;
+    }
+    & .--killOrder{
+      flex-basis: 100px;
+      flex-grow: 1;
+    }
+  }
 }

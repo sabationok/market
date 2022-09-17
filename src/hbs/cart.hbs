@@ -1,4 +1,4 @@
-<form class='form --modalCart'>
+<form class='form --modalCart js-modal-form'>
   <div class='table --modalCart-grid'>
     <div class='tbody --tbody-grid'>
       {{!-- {{#each this}} --}}
@@ -41,7 +41,11 @@
             <div class='row-grid item-info'>
 
               <div class='col' data-title='atribute-1'>
-                <input class='input --selectAtribute' type='select' value='XL' />
+                <input
+                  class='input --selectAtribute'
+                  type='select'
+                  value='XL'
+                />
               </div>
 
               <div class='col' data-title='atribute-2'>
@@ -53,20 +57,14 @@
               </div>
 
               <div class='col --setQuantity' data-title='quantity'>
-                <button
-                  class='button --btnTableMinus'
-                  type='button'
-                >-</button>
+                <button class='button --btnTableMinus' type='button'>-</button>
                 <input
                   class='input --inputQuantity'
                   type='text'
                   name='quantity'
-                  value=0
+                  value='0'
                 />
-                <button
-                  class='button --btnTablePlus'
-                  type='button'
-                >+</button>
+                <button class='button --btnTablePlus' type='button'>+</button>
               </div>
 
               <div class='col' data-title='price'>
@@ -130,20 +128,14 @@
               </div>
 
               <div class='col --setQuantity' data-title='quantity'>
-                <button
-                  class='button --btnTableMinus'
-                  type='button'
-                >-</button>
+                <button class='button --btnTableMinus' type='button'>-</button>
                 <input
                   class='input --inputQuantity'
                   type='text'
                   name='quantity'
-                  value=0
+                  value='0'
                 />
-                <button
-                  class='button --btnTablePlus'
-                  type='button'
-                >+</button>
+                <button class='button --btnTablePlus' type='button'>+</button>
               </div>
 
               <div class='col' data-title='price'>
@@ -156,10 +148,18 @@
       {{!-- {{/each}} --}}
     </div>
   </div>
-  <button
-    class='button --makeOrder'
-    type='submit'
-    data-action='createOrder'
-  >Оформити замовлення
-  </button>
+  <div class='--formDecision'>
+    <button
+      class='button --makeOrder'
+      type='submit'
+      data-action='createOrder'
+    >Оформити замовлення
+    </button>
+    <button
+      class='button --killOrder'
+      type='reset'
+      data-action='killOrder'
+    >Відмінити
+    </button>
+  </div>
 </form>
