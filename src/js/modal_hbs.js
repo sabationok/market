@@ -54,6 +54,7 @@ function buttonEvent(event) {
   }
 }
 actionsBtnClickON();
+//* Функції відкритиття і закриття модалки
 function onBackdropClick(event) {
   let { target, currentTarget } = event;
   if (target === currentTarget) {
@@ -75,7 +76,7 @@ function closeModal() {
     modalEl.removeEventListener('click', onBackdropClick);
   }
 }
-// Функція із функціями які відповідають ся кнопкам
+//* Функція із функціями які відповідають ся кнопкам
 function startBtnAction(actionName, targetEl, event) {
   let transferData = {
     cardId: targetEl.dataset.cardId,
@@ -190,7 +191,7 @@ function startBtnAction(actionName, targetEl, event) {
   btnActions[`${actionName}`](transferData);
 }
 // * Функція створення модалки
-// createModalContent({}, 'openCart');
+//! test start createModalContent({}, 'openCart');
 function createModalContent(transferData, callback) {
   if (callback === undefined) {
     modalNameEl.innerHTML = `Тут буде назва`;

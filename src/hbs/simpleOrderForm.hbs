@@ -3,55 +3,58 @@
     <div class='cart item'>
       <div class='cart item__left-side'>
         <div class='side-img' data-title='img'><img
-            src='https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/looks/look_1__2x.webp'
-            alt=''
+            src='{{mainImgLink}}'
+            alt='{{articul}}'
           /></div>
         <div class='side-info__top'>
 
           <span class='row title'>Art:</span>
-          <span class='row text'>45659878</span>
+          <span class='row text'>{{articul}}</span>
 
           <span class='row title'>Назва:</span>
-          <span class='row text'>"Чоловічий жардін"</span>
+          <span class='row text'>"{{postName}}"</span>
 
           <span class='row title'>Тип:</span>
-          <span class='row text'>Look</span>
+          <span class='row text'>{{postType}}</span>
 
-          <span class='ro wtitle'>:</span>
-          <span class='row text'></span>
+          <span class='row title'>Autor:</span>
+          <span class='row text'>{{postAutorId}}</span>
 
-          <span class='ro wtitle'>:</span>
+          <span class='row title'>:</span>
           <span class='row text'></span>
 
         </div>
         <div class='side-info__bottom'>
 
           <span class='row title'>Ціна:</span>
-          <span class='row text'>2556</span>
+          <span class='row text'>{{price}}</span>
+
+          <span class='row title'>Рівень кешбеку:</span>
+          <span class='row text'>{{cashbackLvl}}</span>
 
           <span class='row title'>Знижка:</span>
-          <span class='row text'>150</span>
+          <span class='row text'>---</span>
 
           <span class='row title'>Сума:</span>
-          <span class='row text'>2556</span>
+          <span class='row text'>{{price}}</span>
 
         </div>
       </div>
 
       <div class='cart item__right-side'>
 
-        <div class='item-component' data-comp-id=''>
+        <div class='item-component' data-comp-id='{{postId}}'>
           <div class='item-component_top'>
             <span class='row title'>Артикул:</span>
-            <span class='row text'>11541245</span>
+            <span class='row text'>{{articul}}</span>
             <span class='row title'>Назва:</span>
-            <span class='row text'>"Сорочка хлопська"</span>
+            <span class='row text'>{{postName}}</span>
           </div>
           <div class='item-component_bottom'>
 
             <span class='row title'>Атрибут 1:</span>
             <div class='row text' data-title='atribute-1'>
-              <input class='input --selectAtribute' type='select' value='XL' />
+              <input class='input --selectAtribute' type='select' value='{{mainAtribute_2}}' />
             </div>
 
             <span class='row title'>Атрибут 2:</span>
@@ -59,12 +62,12 @@
               <input
                 class='input --selectAtribute'
                 type='select'
-                value='Зелений'
+                value='{{mainAtribute_1}}'
               />
             </div>
 
             <span class='row title'>Склад:</span>
-            <span class='row text' data-title='stock'>15</span>
+            <span class='row text' data-title='stock'>{{stock}}</span>
 
             <span class='row title'>Кількість:</span>
             <div class='row text --setQuantity' data-title='quantity'>
@@ -79,10 +82,10 @@
             </div>
 
             <span class='row title'>Ціна:</span>
-            <span class='row text' data-title='price'>3000</span>
+            <span class='row text' data-title='price'>{{price}}</span>
 
             <span class='row title'>Сума:</span>
-            <span class='row text' data-title='price'>3000</span>
+            <span class='row text' data-title='price'>{{price}}</span>
           </div>
         </div>
 
@@ -140,6 +143,7 @@
       class='button --makeOrder'
       type='submit'
       data-action='createOrder'
+      data-card-id="{{postId}}"
     >Оформити замовлення
     </button>
     <button
