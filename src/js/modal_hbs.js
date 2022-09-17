@@ -193,7 +193,7 @@ function startBtnAction(actionName, targetEl, event) {
   btnActions[`${actionName}`](transferData);
 }
 // * Функція створення модалки
-createModalContent({}, 'openCart');
+// createModalContent({}, 'openCart');
 function createModalContent(transferData, callback) {
   let { cardId, autorId, targetEl, cardObject } = transferData;
   // console.log(targetEl);
@@ -235,7 +235,6 @@ function createModalContent(transferData, callback) {
       openCart: function createModalCart() {
         let cartContentArr = localstorage.load('cartContent');
         let cartContentObjArr;
-        //! тут має бути запит на сервер за даними про товари додані у корзину
         if (cartContentArr !== undefined) {
           console.log(cartContentArr);
 
@@ -271,7 +270,7 @@ function createModalContent(transferData, callback) {
             );
           });
           cartForm.addEventListener('reset', event => {
-            closeModal();
+            // closeModal();
           });
 
           return;
