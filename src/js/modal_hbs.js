@@ -5,6 +5,8 @@ import localstorage from './localstorage';
 import { plugins } from './plugins';
 import { cartObj } from './cart';
 import cart from '../hbs/cart.hbs';
+import simpleOrderForm from '../hbs/simpleOrderForm.hbs';
+
 let cartContentArr = [];
 cartContentArr.push('102-2222');
 localstorage.save('cartContent', cartContentArr);
@@ -42,19 +44,20 @@ function buttonEvent(event) {
     return;
   } else if (target !== undefined && btnAction !== undefined) {
     targetEl = target;
-    startBtnAction(btnAction, targetEl);
+    startBtnAction(btnAction, targetEl, event);
     return;
   }
 }
-actionsBtnClickON()
+actionsBtnClickON();
 
 // Функція із функціями які відповідаються кнопкам
-function startBtnAction(actionName, targetEl) {
+function startBtnAction(actionName, targetEl, event) {
   let transferData = {
     cardId: targetEl.dataset.cardId,
     autorId: targetEl.dataset.autorId,
     targetEl: targetEl,
     cardObject: null,
+    btnEvent: event,
   };
   transferData.cardObject = postsListData.find(
     el => el.postId === transferData.cardId
@@ -117,8 +120,8 @@ function startBtnAction(actionName, targetEl) {
     },
     buyNow: function userWantToBuyNow(transferData) {
       let { cardId, autorId, targetEl, cardObject } = transferData;
-      // this.toggleModal();
-      createModalContent(transferData, 'buyNow');
+      this.toggleModal();
+      createModalContent(transferData, 'simpleOrder');
       console.log(`want to buy card ${cardId} Now`);
     },
     //* overlay
@@ -177,16 +180,11 @@ function startBtnAction(actionName, targetEl) {
     createSimpleOrder: function onCreateSimpleOrderBtnClick(transferData) {
       let { cardId, autorId, targetEl, cardObject } = transferData;
       console.log(
-        `Відправляється запит на сервер щодо створення швидкого замовлення на товар ${cardId}, art${cardObject.articul}, та формується INVOICE на оплату товару`
+        `Відправляється запит на сервер щодо створення швидкого замовлення на товар, та формується INVOICE на оплату товару`
       );
-
-      this.closeModal();
-
-      alert(
-        `Замовлення на товар art${cardObject.articul}, "${cardObject.postName}" сформовано. Очікуйте на інформацію у вашому особистому кабінеті. Дякуємо що ви з нами.`
-      );
+      
     },
-    createSimpleOrder: function onCreateOrderBtnClick() {
+    createOrder: function onCreateOrderBtnClick(transferData) {
       console.log('onCreateOrderBtnClick');
     },
   };
@@ -237,14 +235,15 @@ function createModalContent(transferData, callback) {
         let cartContentObjArr;
         //! тут має бути запит на сервер за даними про товари додані у корзину
         if (cartContentArr !== undefined) {
-          console.log(
-            'Товари у корзині готові для відмальовки',
-            cartContentObjArr
-          );
+          console.log(cartContentArr);
 
           plugins.filterArrByArr(
             cartContentArr,
             postsListData,
+            cartContentObjArr
+          );
+          console.log(
+            'Товари у корзині готові для відмальовки',
             cartContentObjArr
           );
 
@@ -255,6 +254,21 @@ function createModalContent(transferData, callback) {
 
           function addEventListeners() {}
           addEventListeners();
+
+          let cartForm = modalContentEl.querySelector('.--modalCart');
+          cartForm.addEventListener('submit', event => {
+            event.preventDefault();
+            localstorage.remove('cartContent');
+            closeModal();
+
+            console.log(
+              'Відправляється запит POST із інфо про замовлення покупцяю'
+            );
+            alert(
+              `Замовлення сформовано. Очікуйте на інформацію у вашому особистому кабінеті. Дякуємо що ви з нами.`
+            );
+          });
+
           return;
         } else {
           toggleModal();
@@ -263,8 +277,7 @@ function createModalContent(transferData, callback) {
           modalContentEl.classList.add('--emptyCartContent');
         }
       },
-      buyNow: function createModalToBuyNow(transferData) {
-        toggleModal();
+      simpleOrder: function createModalToBuyNow(transferData) {
         let { cardObject } = transferData;
         let {
           postId = '000-000000',
@@ -280,12 +293,21 @@ function createModalContent(transferData, callback) {
           ...others
         } = cardObject;
         modalNameEl.textContent = `Купити товар art${articul}`;
-        modalContentEl.innerHTML = `
-        тут буде відображатись інфа про обраний товар
-        <button class="button --buyNow --createSimpleOrder" type="button" data-action="createSimpleOrder" data-card-id="${postId}">
-          Оформити замовлення
-        </button>
-        `;
+        modalContentEl.innerHTML = simpleOrderForm();
+
+        let cartForm = modalContentEl.querySelector('.js-modal-form');
+        cartForm.addEventListener('submit', event => {
+          event.preventDefault();
+
+          closeModal();
+
+          console.log(
+            'Відправляється запит POST із інфо про замовлення покупця.'
+          );
+          alert(
+            `Замовлення сформовано. Очікуйте на інформацію у вашому особистому кабінеті. Дякуємо що ви з нами.`
+          );
+        });
       },
     };
     modalActions[`${callback}`](transferData);

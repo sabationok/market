@@ -72,6 +72,8 @@
       flex-direction: column;
       gap: 4px;
 
+      font-size: 12px;
+
       padding: 4px;
 
       &.--setQuantity {
@@ -83,20 +85,12 @@
       &.element-sku {
       }
       &-title {
-        font-size: 14px;
+        font-size: 10px;
       }
       &-text {
+        font-size: 12px;
         text-align: right;
-      }
-      &.--1 {
-      }
-      &.--6 {
-      }
-    }
-    .button {
-      &.--btnTableMinus {
-      }
-      &.--btnTablePlus {
+
       }
     }
     .input {
