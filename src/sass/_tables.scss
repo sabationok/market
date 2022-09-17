@@ -147,6 +147,7 @@
       }
     }
     & .row {
+      min-height: 22px;
       &.title {
         padding: 2px;
         font-size: 11px;
@@ -163,8 +164,8 @@
     gap: 8px;
     // grid-area: ;
     & .item-component {
-      border-top: 1px solid grey;
-      border-bottom: 1px solid grey;
+      border-top: 1px solid rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
       &_top {
         display: grid;
         grid-template-columns: 1fr 2.7fr;
@@ -172,9 +173,9 @@
 
         padding: 4px 8px;
 
-        // border-top: 1px solid grey;
-        border-bottom: 1px solid grey;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
         & .row {
+          min-height: 22px;
           &.title {
             font-size: 11px;
           }
@@ -191,6 +192,7 @@
       }
     }
     & .row {
+      min-height: 22px;
       &.title {
         font-size: 11px;
       }
