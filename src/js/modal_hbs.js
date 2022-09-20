@@ -37,9 +37,11 @@ let {
 //* Функція яка віслідковує усі події із кнопками
 function actionsBtnClickON() {
   document.addEventListener('click', buttonEvent);
+  // document.addEventListener('click',toClearImgOverlay);
 }
 function actionsBtnClickOFF() {
   document.removeEventListener('click', buttonEvent);
+  // document.removeEventListener('click', toClearImgOverlay);
 }
 function buttonEvent(event) {
   let { target } = event;
@@ -53,7 +55,40 @@ function buttonEvent(event) {
     return;
   }
 }
+function clearOverlays() {
+  document.addEventListener('click', onOverlayBtnClick);
+  // onOverlayBtnClick(target)
+}
+function onOverlayBtnClick(event) {
+  let prevOverlayBtn = null;
+  let { target } = event;
+  if (target.classList.contains('--overlay')) {
+    return;
+  }
+  if (!target.classList.contains('--pull-img-overlay')) {
+    document.querySelectorAll('.--pull-img-overlay').forEach(elem => {
+      elem.classList.remove('--selected');
+    });
+    // document.removeEventListener('click', onOverlayBtnClick);
+
+    console.log('Не поцілив!');
+    return;
+  }
+  if (target === prevOverlayBtn) {
+    target.classList.toggle('--selected');
+    prevOverlayBtn = target;
+    console.log(prevOverlayBtn);
+    return;
+  }
+  if (prevOverlayBtn !== null) {
+    prevOverlayBtn.classList.remove('--selected');
+  }
+  target.classList.toggle('--selected');
+  prevOverlayBtn = target;
+}
 actionsBtnClickON();
+clearOverlays();
+
 //* Функції відкритиття і закриття модалки
 function onBackdropClick(event) {
   let { target, currentTarget } = event;
@@ -77,6 +112,7 @@ function closeModal() {
   }
 }
 //* Функція із функціями які відповідають ся кнопкам
+
 function startBtnAction(actionName, targetEl, event) {
   let transferData = {
     cardId: targetEl.dataset.cardId,
@@ -88,6 +124,7 @@ function startBtnAction(actionName, targetEl, event) {
   transferData.cardObject = postsListData.find(
     el => el.postId === transferData.cardId
   );
+
   //* обєкт із функціями кнопок
   let btnActions = {
     toggleModal: toggleModal,
@@ -123,16 +160,27 @@ function startBtnAction(actionName, targetEl, event) {
       console.log(`want to buy card ${cardId} Now`);
     },
     //* overlay
+
     showSizes: function onOverlaySizesBtnClick(transferData) {
       let { cardId, autorId, targetEl, cardObject } = transferData;
+      // targetEl.classList.toggle('--selected');
+      // console.log(targetEl.parentNode.classList);
+      // this.forClearImgOverlay();
       console.log(`show card ${cardId} SIZES`);
     },
     showFotos: function onOverlayFotosBtnClick(transferData) {
       let { cardId, autorId, targetEl, cardObject } = transferData;
+      // targetEl.classList.toggle('--selected');
+      // console.log(targetEl.parentNode.classList);
+      // this.forClearImgOverlay();
+
       console.log(`show card ${cardId} FOTOS`);
     },
     showDetails: function onOverlayDetailsBtnClick(transferData) {
       let { cardId, autorId, targetEl, cardObject } = transferData;
+      // targetEl.classList.toggle('--selected');
+      // console.log(targetEl.parentNode.classList);
+      // this.forClearImgOverlay();
       console.log(`show card ${cardId} DETAILS`);
     },
     //* card actions
@@ -295,7 +343,7 @@ function createModalContent(transferData, callback) {
       showAotorPostsList: function createModalAutorList(transferData) {
         let { cardId, autorId, targetEl, cardObject } = transferData;
         modalNameEl.innerHTML = `Автор ${autorId}`;
-        modalContentEl.innerHTML =`Тут будуть пости автора ${autorId}`;
+        modalContentEl.innerHTML = `Тут будуть пости автора ${autorId}`;
       },
     };
     modalActions[`${callback}`](transferData);

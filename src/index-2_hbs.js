@@ -7,13 +7,15 @@ import  autor  from './hbs/autor.hbs';
 // console.log('Список авторів', autorsListData);
 // console.log(postsListData);
 
-// todo Обєкт яккий потрібно вставити у функцію для створення сторінки
+let refs = {
+  autorElmsArr: null,
+}
+// * Обєкт яккий потрібно вставити у функцію для створення сторінки
 let Obj = {
   sectionClass: '.js-postList',
   autorsArr: autorsListData,
   postCardsDataArr: postsListData,
 };
-
 // ? Запуск фунції
 // creatAautorsZone(Obj);
 createAutorsZone(Obj);
@@ -50,7 +52,7 @@ function createAutorEl(autorDataObject, postCardsDataArr) {
   } = autorDataObject;
   // * Змінна у якій зберігаються пости автора відфільтровані із загальної бази
   const filteredPostCardsDataArr = [];
-
+console.log(filteredPostCardsDataArr);
   // * Фільтруємо загальний масив на основі списку постів автора
   filterArrByArr(
     autorPostCardsIdList,
@@ -77,7 +79,7 @@ function createAutorEl(autorDataObject, postCardsDataArr) {
   );
 
   return `
-  <div class="section__autorTop">
+  <div class="section__autorTop js-autor">
     <div class="slick__container">
       <div class="autorZone__header">
         <a class="autorZone__logoBox" href=""> 
@@ -140,7 +142,7 @@ function createPostCardComp(cardInfoObject) {
       </div>
 
       <!-- //? img overlay -->
-      <div class="card --main--overlay">
+      <div class="card --main-overlay">
         <!-- //* деталі карти -->
         <button class="button --pull-img-overlay" type="button" data-action="showDetails" data-card-id="${postId}">Деталі
           <svg class="btn-svg">
@@ -247,3 +249,8 @@ function createPostCardComp(cardInfoObject) {
   </div>
   `;
 }
+// refs.autorElmsArr = document.querySelectorAll('.js-autor')
+
+// refs.autorElmsArr.forEach(el => {
+//   console.log(el);
+// });

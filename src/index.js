@@ -1,8 +1,8 @@
 // todo ================================ ОЧИСТКА МАРКЕРІВ
-// let prevMarker = null;
-// clearLookMarkers();
+let prevMarker = null;
+clearLookMarkers();
 function clearLookMarkers() {
-  window.addEventListener('click', onMarkerClick);
+  document.addEventListener('click', onMarkerClick);
   function onMarkerClick(event) {
     let { target, currentTarget } = event;
     if (!target.classList.contains('look__marker')) {
@@ -11,7 +11,7 @@ function clearLookMarkers() {
       });
       return;
     }
-  
+
     if (target === prevMarker) {
       target.classList.toggle('--selected');
       prevMarker = target;
@@ -22,10 +22,44 @@ function clearLookMarkers() {
     }
     target.classList.toggle('--selected');
     prevMarker = target;
+    // document.removeEventListener('click', onMarkerClick);
   }
-};
+}
+// clearOverlays();
+function clearOverlays() {
+  let prevOverlayBtn = null;
+  document.addEventListener('click', onOverlayBtnClick);
+
+  function onOverlayBtnClick(event) {
+    let { target, currentTarget } = event;
+    if(target.classList.contains('--overlay')){
+      return
+    }
+    if (!target.classList.contains('--pull-img-overlay')) {
+      document.querySelectorAll('.--pull-img-overlay').forEach(elem => {
+        elem.classList.remove('--selected');
+      });
+      // document.removeEventListener('click', onOverlayBtnClick);
+
+      console.log('Не поцілив!');
+      return;
+    }
+
+    if (target === prevOverlayBtn) {
+      target.classList.toggle('--selected');
+      prevOverlayBtn = target;
+      console.log(prevOverlayBtn);
+      return;
+    }
+    if (prevOverlayBtn !== null) {
+      prevOverlayBtn.classList.remove('--selected');
+    }
+    target.classList.toggle('--selected');
+    prevOverlayBtn = target;
+  }
+}
 // let prevBuyNowBtn = null;
-// // activateBuyNowBtns()
+// activateBuyNowBtns()
 // function activateBuyNowBtns() {
 //   window.addEventListener('click', onBuyNowBtnClick);
 //   function onBuyNowBtnClick(event) {
@@ -36,7 +70,7 @@ function clearLookMarkers() {
 //       });
 //       return;
 //     }
-  
+
 //     if (target === prevBuyNowBtn) {
 //       target.classList.toggle('--selected');
 //       prevBuyNowBtn = target;
@@ -49,10 +83,3 @@ function clearLookMarkers() {
 //     prevBuyNowBtn = target;
 //   }
 // }
-
-
-
-
-
-
-

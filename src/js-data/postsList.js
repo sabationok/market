@@ -110,6 +110,42 @@ export let postsListData = [
     post: 1,
   },
   {
+    postId: '101-2552',
+    postType: 'look',
+    postAutorId: '101',
+    postName: 'Сукня, шовкова, синя',
+    articul: '00001',
+    section: '',
+    category: '',
+    subCategory: '',
+    price: 2256,
+    currency: 'UAH',
+    cashbackLvl: '02',
+    mainAtribute_1: 'синій',
+    mainAtribute_2: 'M',
+    style: 'night-life',
+    content: 'шовк 100%',
+    availability: 'у наявності',
+    stock: 5,
+    manufacturingTime: 2,
+    mainImgLink:
+      'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
+    imagesList: [],
+    postItemList: [
+      {
+        itemId: '101-8888',
+        itemPosTop: '50%',
+        itemPostLeft: '28%',
+      },
+      {
+        itemId: '104-8888',
+        itemPosTop: '60%',
+        itemPostLeft: '20%',
+      },
+    ],
+    post: 1,
+  },
+  {
     postId: '102-2222',
     posttype: 'look',
     postAutorId: '102',
@@ -144,6 +180,7 @@ export let postsListData = [
     ],
     post: 1,
   },
+  
   {
     postId: '102-5555',
     posttype: 'look',

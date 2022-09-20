@@ -4,8 +4,8 @@ $(document).ready(function () {
   $('.slick__brands-slider').slick({
     dots: true,
     infinite: true,
-    arrows: false,
-    arrows: false,
+    arrows: true,
+
     // centerMode: true,
     // centerPadding: '0',
     slidesToShow: 3,
@@ -15,7 +15,7 @@ $(document).ready(function () {
       {
         breakpoint: 1100,
         settings: {
-          arrows: false,
+          arrows: true,
           // centerMode: true,
           // centerPadding: '40px',
           slidesToShow: 2,
