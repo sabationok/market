@@ -5,7 +5,7 @@
 
   max-width: 480px;
   @media screen and (min-width: 768px) {
-padding: 0 1px;
+    padding: 0 1px;
   }
 
   &__imgslist {
@@ -236,10 +236,11 @@ padding: 0 1px;
       }
     }
   }
-  & .--overlay {
+  /*& .--overlay {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 5;
 
     overflow-x: hidden;
     overflow-y: auto;
@@ -250,12 +251,12 @@ padding: 0 1px;
     background-color: rgba(255, 255, 255, 0.7);
 
     transition: all var(--timing-function__main);
-  }
+  }*/
   & .--overlay {
     position: absolute;
     top: 0;
     left: 0;
-
+    
     overflow-x: hidden;
     overflow-y: auto;
     width: 100%;

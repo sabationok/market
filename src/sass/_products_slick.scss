@@ -13,24 +13,7 @@
     left: 0;
 
     background-color: rgba(255, 255, 255, 0.25);
-  }
-  &-arrow{
-    &:hover{
-      background-color: rgba(255, 255, 255, 0.25);
-    }
-  }
-  &-prev,
-  &-next{
-z-index: 5;
-width: 50px;
-height: 50px;
-
-  }
-  &-next{
-right: 0;
-  }
-  &-prev{
-    left: 0;
+    min-height: 24px;
   }
   /*&-list {
     & .slick-slide {
