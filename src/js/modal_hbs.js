@@ -33,7 +33,7 @@ let {
   bodyEl,
   ...otherRefs
 } = refs;
-
+let prevOverlayBtn = null;
 //* Функція яка віслідковує усі події із кнопками
 function actionsBtnClickON() {
   document.addEventListener('click', buttonEvent);
@@ -51,17 +51,14 @@ function buttonEvent(event) {
     return;
   } else if (target !== undefined && btnAction !== undefined) {
     targetEl = target;
+    onOverlayBtnClick(event)
     startBtnAction(btnAction, targetEl, event);
     return;
   }
 }
-function clearOverlays() {
-  document.addEventListener('click', onOverlayBtnClick);
-  // onOverlayBtnClick(target)
-}
 function onOverlayBtnClick(event) {
-  let prevOverlayBtn = null;
   let { target } = event;
+
   if (target.classList.contains('--overlay')) {
     return;
   }
@@ -87,7 +84,7 @@ function onOverlayBtnClick(event) {
   prevOverlayBtn = target;
 }
 actionsBtnClickON();
-clearOverlays();
+
 
 //* Функції відкритиття і закриття модалки
 function onBackdropClick(event) {
