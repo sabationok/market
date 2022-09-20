@@ -1,0 +1,2 @@
+!function(){let e=null;document.addEventListener("click",(function(t){let{target:l,currentTarget:s}=t;if(l.classList.contains("look__marker")){if(l===e)return l.classList.toggle("--selected"),void(e=l);null!==e&&e.classList.remove("--selected"),l.classList.toggle("--selected"),e=l}else document.querySelectorAll(".look__marker").forEach((e=>{e.classList.remove("--selected")}))}))}();
+//# sourceMappingURL=index.ad0175b2.js.map
