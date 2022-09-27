@@ -1,90 +1,82 @@
-<div class="card --3 js-post-card" data-post-id="{{postId}}">
-    <div class="card --main">
+{{#each this}}
+  <div class='card --3 js-post-card' data-post-id='{{postId}}'>
+    <div class='card --main'>
       <!-- //* main image -->
-      <div class="card-img__container" style="width: 100%; min-height: 320px">
+      <div class='card-img__container' style='width: 100%; min-height: 320px'>
         <img
-          class="card__img"
-          src="../images/logo-social.png"
-          width="480"
-          alt=""
+          class='card__img'
+          src='{{mainImgLink}}'
+          width='480'
+          alt=''
         />
       </div>
 
       <!-- //? img overlay -->
-      <div class="card --main--overlay">
+      <div class="card --main-overlay">
         <!-- //* деталі карти -->
-        <button class="button --pull-img-overlay" type="button" data-show-details="{{postId}}">Деталі
+        <button class="button --pull-img-overlay" type="button" data-action="showDetails" data-card-id="{{postId}}">Деталі
           <svg class="btn-svg">
-            {{!-- <use href="{{sprite}}#icon-list"></use> --}}
-             <use href="{{sprite}}#icon-list"></use>
+            <use href="{{sprite}}#icon-list"></use>
           </svg>
         </button>
-        <div class="card__img --overlay --left">
-
-          
-          <ul class="card__social-list">
-
-          </ul>
-        </div>
+        <div class="card__img --overlay --left"></div>
 
         <!-- //* фотографії  -->
-        <button class="button --pull-img-overlay" type="button"  data-show-fotos="{{postId}}">Фото
+        <button class="button --pull-img-overlay" type="button"  data-action="showFotos" data-card-id="{{postId}}">Фото
           <svg class="btn-svg">
             <use href="{{sprite}}#icon-images"></use>
           </svg>
         </button>
-        <div class="card__img --overlay --top">
-          <ul class="card__imgslist">
-Фото
-          </ul>
-        </div>
+        <div class="card__img --overlay --top"></div>
 
         <!-- //* розмірна сітка -->
-        <button class="button --pull-img-overlay" type="button" data-show-sizes="{{postId}}">Розміри
+        <button class="button --pull-img-overlay" type="button" data-action="showSizes" data-card-id="{{postId}}">Розміри
           <svg class="btn-svg">
             <use href="{{sprite}}#icon-table"></use>
           </svg>
         </button>
-        <div class="card__img --overlay --right">
-          Розміри
-        </div>
+        <div class="card__img --overlay --right">Розміри</div>
 
         <!-- //* look -->
-        <div class="card__img --overlay --center" data-show-markers="{{postId}}">
+        <div class="card__img --overlay --center" data-markers-list="{{postId}}">
           <ul class="look__list  js-look-list" data-markers-list="{{postId}}">
           <!-- //*  -->
           </ul>
         </div>
         
       </div>
+
     </div>
 
-    <div class="card__info">
+    <div class='card__info'>
 
-      <div class="card__info-top">
-        <div class="card__info-name-box">
-          <p class="card__info-name">{{postName}}</p>
-          <p class="card__info-sku">{{articul}}</p>
+      <div class='card__info-top'>
+        <div class='card__info-name-box'>
+          <p class='card__info-name'>{{postName}}</p>
+          <p class='card__info-sku'>{{articul}}</p>
         </div>
 
+        
         <div class="card__actions-box">
-          <button class="button --card-action" data-action-comment="{{postId}}">
+          <button class="button --card-action" data-action="comment" data-card-id="{{postId}}">
             <svg class="btn-svg">
               <use href="{{sprite}}#icon-comment-o"></use>
             </svg>
           </button>
-          <button class="button --card-action" data-action-like="{{postId}}">
+
+          <button class="button --card-action" data-action="like" data-card-id="{{postId}}">
             <svg class="btn-svg">
               <use href="{{sprite}}#icon-heart-o"></use>
             </svg>
           </button>
-          <!-- data-action-save="{{postId}}"-->
+
           <button class="button --card-action" data-action="save" data-card-id="{{postId}}">
             <svg class="btn-svg">
               <use href="{{sprite}}#icon-bookmark-o"></use>
             </svg>
           </button>
-          <button class="button --card-action" data-action-share="{{postId}}">
+
+          <button class="button --card-action" data-action="share" data-card-id="{{postId}}">
             <svg class="btn-svg">
               <use href="{{sprite}}#icon-share"></use>
             </svg>
@@ -104,12 +96,13 @@
 
         <!-- //* кнопки "Купити" і "Кошик" -->
         <div class="card__forBuyBtns-box">
-          <button class="button --addToCart" type="button" data-buy-later="{{postId}}">
+          <button class="button --addToCart" type="button" data-action="buyLater" data-card-id="{{postId}}">
             <svg class="btn-svg">
               <use href="{{sprite}}#icon-shopping-cart"></use>
             </svg>
           </button>
-          <button class="button --buyNow" type="button" data-buy-now="{{postId}}">
+          
+          <button class="button --buyNow" type="button" data-action="buyNow" data-card-id="{{postId}}">
             Купити
           </button>
         </div>
@@ -117,3 +110,4 @@
 
     </div>
   </div>
+{{/each}}

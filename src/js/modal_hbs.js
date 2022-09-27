@@ -1,29 +1,22 @@
 import sprite_market from '../images/sprite_market.svg';
 import modal_base from '../hbs/modal_base.hbs';
-import { autorsListData } from '../js-data/autorsList';
+import { authorsListData } from '../js-data/autorsList';
 import { postsListData } from '../js-data/postsList';
 import { plugins } from './plugins';
 import { cartObj } from './cart';
 import localstorage from './localstorage';
 import cart from '../hbs/cart.hbs';
 import simpleOrderForm from '../hbs/simpleOrderForm.hbs';
-
-let testArr = () => {
-  let filteredArr = [];
-  for (let i = 0; i < postsListData.length; i += 1) {
-    if (postsListData[i].postAutorId === '101') {
-      filteredArr.push(postsListData[i]);
-      // console.log(postsListData[i]);
-    }
-  }
-};
-// console.log(postsListData.map(el => el.postAutorId));
-// console.log(testArr());
-// console.log(postsListData);
+import card from '../hbs/card.hbs';
+import ovrl_foto from '../hbs/ovrl_foto.hbs';
 
 let cartContentArr = [];
 cartContentArr.push('102-2222');
+cartContentArr.push('101-2222', '101-8888');
+
 localstorage.save('cartContent', cartContentArr);
+//* Проміжна змінна (попередня ціль, кнопка)
+let prevOverlayBtn = null;
 
 //* Знаходжу усі необхідні елементи для створення і управління модалкою
 const refs = {
@@ -46,11 +39,10 @@ let {
   bodyEl,
   ...otherRefs
 } = refs;
-let prevOverlayBtn = null;
+
 //* Функція яка віслідковує усі події із кнопками
 function actionsBtnClickON() {
   document.addEventListener('click', buttonEvent);
-  // document.addEventListener('click',toClearImgOverlay);
 }
 function actionsBtnClickOFF() {
   document.removeEventListener('click', buttonEvent);
@@ -75,16 +67,15 @@ function onOverlayBtnClick(event) {
   // if (target.classList.contains('--overlay')) {
   //   return;
   // }
-  // if (!target.classList.contains('--pull-img-overlay')) {
-  //   document.querySelectorAll('.--pull-img-overlay').forEach(elem => {
-  //     elem.classList.remove('--selected');
-  //   });
-  //   return;
-  // }
+  if (!target.classList.contains('--pull-img-overlay')) {
+    document.querySelectorAll('.--pull-img-overlay').forEach(elem => {
+      elem.classList.remove('--selected');
+    });
+    return;
+  }
   if (target === prevOverlayBtn) {
     target.classList.toggle('--selected');
     prevOverlayBtn = target;
-    console.log(prevOverlayBtn);
     return;
   }
   if (prevOverlayBtn !== null) {
@@ -117,37 +108,37 @@ function closeModal() {
     modalEl.removeEventListener('click', onBackdropClick);
   }
 }
-//* Функція із функціями які відповідають ся кнопкам
 
+//* Функція із функціями які відповідають ся кнопкам
 function startBtnAction(actionName, targetEl, event) {
   let transferData = {
     cardId: targetEl.dataset.cardId,
-    autorId: targetEl.dataset.autorId,
+    authorId: targetEl.dataset.authorId,
     targetEl: targetEl,
     cardObject: null,
     btnEvent: event,
   };
-  transferData.cardObject = postsListData.find(
-    el => el.postId === transferData.cardId
-  );
+  // transferData.cardObject = postsListData.find(
+  //   el => el.postId === transferData.cardId
+  // );
 
   //* обєкт із функціями кнопок
   let btnActions = {
     toggleModal: toggleModal,
     closeModal: closeModal,
     showAuthorsCards: function onShowAutorCardsBtnClick(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
+      let { cardId, authorId, targetEl } = transferData;
 
       this.toggleModal();
-      createModalContent(transferData, 'showAotorPostsList');
+      createModalContent(transferData, 'showAuthorPostsList');
     },
     showMyCart: function onOpenCartBtnClick(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
+      let { cardId, authorId, targetEl } = transferData;
       createModalContent(transferData, 'openCart');
     },
     // for to buy
     buyLater: function userWantToBuyLater(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
+      let { cardId, authorId, targetEl } = transferData;
       targetEl.classList.toggle('--inCart');
 
       if (targetEl.classList.contains('--inCart')) {
@@ -160,41 +151,37 @@ function startBtnAction(actionName, targetEl, event) {
       targetEl.classList.add('--deleted');
     },
     buyNow: function userWantToBuyNow(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
+      let { cardId, authorId, targetEl } = transferData;
+
       this.toggleModal();
+
       createModalContent(transferData, 'simpleOrder');
       console.log(`want to buy card ${cardId} Now`);
     },
     //* overlay
-    showSizes: function onOverlaySizesBtnClick(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
-      // targetEl.classList.toggle('--selected');
-      // console.log(targetEl.parentNode.classList);
-      // this.forClearImgOverlay();
-      console.log(`show card ${cardId} SIZES`);
-    },
     showFotos: function onOverlayFotosBtnClick(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
-      // targetEl.classList.toggle('--selected');
-      // console.log(targetEl.parentNode.classList);
-      // this.forClearImgOverlay();
+      let { cardId, targetEl } = transferData;
+      createOverlayContent(transferData, 'openOvrlFoto');
 
       console.log(`show card ${cardId} FOTOS`);
     },
     showDetails: function onOverlayDetailsBtnClick(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
-      // targetEl.classList.toggle('--selected');
-      // console.log(targetEl.parentNode.classList);
-      // this.forClearImgOverlay();
+      let { cardId, targetEl } = transferData;
+      createOverlayContent(transferData, 'openOvrlDetails');
       console.log(`show card ${cardId} DETAILS`);
+    },
+    showSizes: function onOverlaySizesBtnClick(transferData) {
+      let { cardId, targetEl } = transferData;
+      createOverlayContent(transferData, 'openOvrlSizes');
+      console.log(`show card ${cardId} SIZES`);
     },
     //* card actions
     share: function onActionShareBtnClick(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
+      let { cardId, authorId, targetEl, cardObject } = transferData;
       console.log(`want SHARE post ${cardId}`);
     },
     like: function onActionLikeBtnClick(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
+      let { cardId, authorId, targetEl, cardObject } = transferData;
       targetEl.classList.toggle('--liked');
 
       if (targetEl.classList.contains('--liked')) {
@@ -210,7 +197,7 @@ function startBtnAction(actionName, targetEl, event) {
       }
     },
     save: function onActionSaveBtnClick(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
+      let { cardId, authorId, targetEl, cardObject } = transferData;
       targetEl.classList.toggle('--saved');
       if (targetEl.classList.contains('--saved')) {
         targetEl.innerHTML = `<svg class="btn-svg">
@@ -225,11 +212,13 @@ function startBtnAction(actionName, targetEl, event) {
       }
     },
     comment: function onActionShareBtnClick(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
+      let { cardId, authorId, targetEl, cardObject } = transferData;
       console.log(`want COMMENT post ${cardId}`);
     },
+    //*Підтвердження та відміна замовлення
     createSimpleOrder: function onCreateSimpleOrderBtnClick(transferData) {
-      let { cardId, autorId, targetEl, cardObject } = transferData;
+      let { cardId, authorId, targetEl, cardObject } = transferData;
+
       console.log(
         `Відправляється запит на сервер щодо створення швидкого замовлення на товар, та формується INVOICE на оплату товару`
       );
@@ -241,7 +230,7 @@ function startBtnAction(actionName, targetEl, event) {
       console.log('kill order click');
     },
   };
-  btnActions[`${actionName}`](transferData);
+  btnActions[actionName](transferData);
 }
 // * Функція створення модалки
 //! test start createModalContent({}, 'openCart');
@@ -262,7 +251,7 @@ function createModalContent(transferData, callback) {
         event.preventDefault();
 
         closeModal();
-        // cartFormEl.removeEventListener('submit', modalActions.modalFormSubmit);
+        cartFormEl.removeEventListener('submit', modalActions.modalFormSubmit);
         console.log(
           'Відправляється запит POST із інфо про замовлення покупцяю'
         );
@@ -304,12 +293,17 @@ function createModalContent(transferData, callback) {
         }
       },
       simpleOrder: function createModalToBuyNow(transferData) {
-        let { cardObject } = transferData;
+        let { cardId } = transferData;
+        let lastSeenCardObj = {};
+
+        //! Тут має бути запит до локал стореджу (де зберігається попередній обєкт) або на сервер якщо вони не збігаються
+        lastSeenCardObj = postsListData.find(el => el.postId === cardId);
+
         let {
           postId = '000-000000',
-          postType = 'posttype',
+          postType = 'postType',
           postName = 'postName',
-          postAutorId = 'postAutorId',
+          postAuthorId = 'postAuthorId',
           articul = '000000',
           price = 0,
           cashbackLvl = '00',
@@ -317,20 +311,53 @@ function createModalContent(transferData, callback) {
           mainImgLink = './',
           socialsLinkList = [],
           ...others
-        } = cardObject;
+        } = lastSeenCardObj;
+
         modalNameEl.textContent = `Купити товар art${articul}`;
-        modalContentEl.innerHTML = simpleOrderForm(cardObject);
+        modalContentEl.innerHTML = simpleOrderForm(lastSeenCardObj);
 
         let cartForm = modalContentEl.querySelector('.js-modal-form');
         cartForm.addEventListener('submit', this.modalFormSubmit);
         cartForm.addEventListener('reset', this.modalFormReset);
       },
-      showAotorPostsList: function createModalAutorList(transferData) {
-        let { cardId, autorId, targetEl, cardObject } = transferData;
-        modalNameEl.innerHTML = `Автор ${autorId}`;
-        modalContentEl.innerHTML = `Тут будуть пости автора ${autorId}`;
+      showAuthorPostsList: function createModalAutorList(transferData) {
+        let { cardId, authorId, targetEl } = transferData;
+        console.log(postsListData);
+        let authorsListData = postsListData.filter(
+          el => el.postAuthorId === authorId
+        );
+
+
+        modalNameEl.innerHTML = `Автор ${authorId}`;
+        modalContentEl.innerHTML = card(authorsListData);
       },
     };
-    modalActions[`${callback}`](transferData);
+    modalActions[callback](transferData);
   }
+}
+
+//* Створення оверлею
+function createOverlayContent(transferData, callback) {
+  let { cardId } = transferData;
+  //! Тут має бути запит до локал стореджу (де зберігається попередній обєкт) або на сервер якщо вони не збігаються
+  let lastSeenCardObj = postsListData.find(el => el.postId === cardId);
+
+  let overlays = {
+    openOvrlDetails: function openOvrlDetails(transferData, lastSeenCardObj) {
+      let { targetEl } = transferData;
+      let ovrlEl = targetEl.nextElementSibling;
+    },
+    openOvrlFoto: function openOvrlFoto(transferData, lastSeenCardObj) {
+      let { targetEl } = transferData;
+      let { imagesList } = lastSeenCardObj;
+      let ovrlEl = targetEl.nextElementSibling;
+      ovrlEl.innerHTML = ovrl_foto(imagesList);
+    },
+    openOvrlSizes: function openOvrlSizes(transferData, lastSeenCardObj) {
+      let { targetEl } = transferData;
+      let ovrlEl = targetEl.nextElementSibling;
+    },
+  };
+
+  overlays[callback](transferData, lastSeenCardObj);
 }

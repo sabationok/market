@@ -8,11 +8,13 @@
     padding: 0 1px;
   }
 
-  &__imgslist {
+  &__imgsList {
     display: flex;
     flex-wrap: wrap;
     gap: 2px;
-    &-Item {
+
+    width: 100%;
+    &-item {
       width: calc((100% - 2px) / 2);
     }
   }

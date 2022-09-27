@@ -2,12 +2,12 @@
 $(document).ready(function () {
   // тут вказується клас DIVчика яз якого потрібно зробити слайдер
   $('.slick__brands-slider').slick({
-    dots: true,
+    // dots: true,
     infinite: true,
-    arrows: true,
+    // arrows: true,
 
-    centerMode: true,
-    centerPadding: '0',
+    // centerMode: true,
+    // centerPadding: '0',
     slidesToShow: 3,
     slidesToScroll: 1,
 
@@ -15,7 +15,8 @@ $(document).ready(function () {
       {
         breakpoint: 1100,
         settings: {
-          arrows: true,
+          dots: true,
+          // arrows: true,
           // centerMode: true,
           // centerPadding: '20px',
           slidesToShow: 2,
@@ -25,6 +26,7 @@ $(document).ready(function () {
       {
         breakpoint: 768,
         settings: {
+          dots: true,
           arrows: false,
           // centerMode: true,
           // centerPadding: '40px',

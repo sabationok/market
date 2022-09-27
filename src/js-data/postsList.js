@@ -13,8 +13,14 @@ export let postsListData = [
     price: 2256,
     currency: 'UAH',
     cashbackLvl: '02',
-    mainAtribute_1: 'синій',
-    mainAtribute_2: 'M',
+    mainAtribute_1: {
+      atributeName: 'Колір',
+      atributeValue: ['зелений', 'голубий', 'синій', 'рожевий', 'пастель'],
+    },
+    mainAtribute_2: {
+      atributeName: 'Розмір',
+      atributeValue: ['s','m','l','xl'],
+    },
     style: 'night-life',
     content: 'шовк 100%',
     availability: 'у наявності',
@@ -22,16 +28,39 @@ export let postsListData = [
     manufacturingTime: 2,
     mainImgLink:
       'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
-    imagesList: [],
+    imagesList: [
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_rozeva_br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_zelena__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_rozeva_br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_zelena__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
+      },
+    ],
     description: '',
+
+    postCompList: [],
     postItemList: [
       {
-        itemId: '101-8888',
+        itemId: '101-2222',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '104-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -41,7 +70,7 @@ export let postsListData = [
   {
     postId: '101-5555',
     postType: 'look',
-    postAuthorType: '',
+    postAuthorType: 'brand',
     postAuthorId: '101',
     postName: 'Сукня, шовкова, рожева',
     articul: '000002',
@@ -51,8 +80,14 @@ export let postsListData = [
     price: 2552,
     currency: 'UAH',
     cashbackLvl: '01',
-    mainAtribute_1: '',
-    mainAtribute_2: '',
+    mainAtribute_1: {
+      atributeName: 'Колір',
+      atributeValue: ['зелений', 'голубий', 'синій', 'рожевий', 'пастель'],
+    },
+    mainAtribute_2: {
+      atributeName: 'Розмір',
+      atributeValue: ['s','m','l','xl'],
+    },
     style: '',
     content: '',
     availability: '',
@@ -60,16 +95,38 @@ export let postsListData = [
     manufacturingTime: '',
     mainImgLink:
       'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_rozeva_br2.webp',
-    imagesList: [],
+    imagesList: [
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_rozeva_br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_zelena__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_rozeva_br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_zelena__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
+      },
+    ],
     description: '',
+    postCompList: ['101-8888', '104-8888'],
     postItemList: [
       {
         itemId: '101-8888',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '104-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -91,11 +148,11 @@ export let postsListData = [
     cashbackLvl: '02',
     mainAtribute_1: {
       atributeName: 'Колір',
-      atributeValue: 'Зелений',
+      atributeValue: ['зелений', 'голубий', 'синій', 'рожевий', 'пастель'],
     },
     mainAtribute_2: {
       atributeName: 'Розмір',
-      atributeValue: 'xl',
+      atributeValue: ['s','m','l','xl'],
     },
     style: '',
     content: '',
@@ -104,11 +161,32 @@ export let postsListData = [
     manufacturingTime: '',
     mainImgLink:
       'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_zelena__br2.webp',
-    imagesList: [],
+    imagesList: [
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_rozeva_br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_zelena__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_rozeva_br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_zelena__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
+      },
+    ],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '101-8888',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
@@ -137,16 +215,38 @@ export let postsListData = [
     manufacturingTime: 2,
     mainImgLink:
       'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
-    imagesList: [],
+    imagesList: [
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_rozeva_br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_zelena__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_rozeva_br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia_zelena__br2.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/brand_2/suknia-synia__br2.webp',
+      },
+    ],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '101-8888',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '104-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -175,23 +275,47 @@ export let postsListData = [
     manufacturingTime: '',
     mainImgLink:
       'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-1.webp',
-    imagesList: [],
+    imagesList: [
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-5.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-5.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-5.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+    ],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '101-8888',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '104-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
     ],
     sprite: sprite_market,
   },
-
   {
     postId: '102-5555',
     postType: 'look',
@@ -214,16 +338,41 @@ export let postsListData = [
     manufacturingTime: '',
     mainImgLink:
       'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-5.webp',
-    imagesList: [],
+    imagesList: [
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-5.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-5.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-5.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+    ],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '101-8888',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '104-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -252,16 +401,41 @@ export let postsListData = [
     manufacturingTime: '',
     mainImgLink:
       'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
-    imagesList: [],
+    imagesList: [
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-5.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-5.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-5.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia_3/br-3_f-9.webp',
+      },
+    ],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '101-8888',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '104-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -290,16 +464,29 @@ export let postsListData = [
     manufacturingTime: '',
     mainImgLink:
       'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-PFD08E_99X_F1.webp',
-    imagesList: [],
+    imagesList: [
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-AKD0FM_80X_F1.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-PFD08E_88X_F1.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-PFD08E_99X_F1.webp',
+      },
+    ],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '101-5555',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '102-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -328,16 +515,29 @@ export let postsListData = [
     manufacturingTime: '',
     mainImgLink:
       'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-AKD0FM_80X_F1.webp',
-    imagesList: [],
+    imagesList: [
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-AKD0FM_80X_F1.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-PFD08E_88X_F1.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-PFD08E_99X_F1.webp',
+      },
+    ],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '101-8888',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '104-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -366,16 +566,29 @@ export let postsListData = [
     manufacturingTime: '',
     mainImgLink:
       'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-PFD08E_88X_F1.webp',
-    imagesList: [],
+    imagesList: [
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-AKD0FM_80X_F1.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-PFD08E_88X_F1.webp',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/goodcat46/images/main/gamanets/AW22-PFD08E_99X_F1.webp',
+      },
+    ],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '102-2222',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '103-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -405,14 +618,17 @@ export let postsListData = [
     mainImgLink: '',
     imagesList: [],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '102-2222',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '103-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -442,14 +658,17 @@ export let postsListData = [
     mainImgLink: '',
     imagesList: [],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '101-8888',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '102-5555',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -479,14 +698,17 @@ export let postsListData = [
     mainImgLink: '',
     imagesList: [],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '101-8888',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '102-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },
@@ -517,14 +739,17 @@ export let postsListData = [
       'https://raw.githubusercontent.com/goodcat46/images/main/brand_cards/suknia-synia/suknia-synia_1.webp',
     imagesList: [],
     description: '',
+    postCompList: [],
     postItemList: [
       {
         itemId: '101-8888',
+        itemUrl: '',
         itemPosTop: '50%',
         itemPosLeft: '28%',
       },
       {
         itemId: '104-8888',
+        itemUrl: '',
         itemPosTop: '60%',
         itemPosLeft: '20%',
       },

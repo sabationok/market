@@ -1,0 +1,45 @@
+<ul class='cart item__right-side'>
+{{#each this}}
+  <li class='item-component' data-comp-id='{{postId}}'>
+    <div class='item-component_top'>
+      <span class='row title'>Артикул:</span>
+      <span class='row text'>{{articul}}</span>
+      <span class='row title'>Назва:</span>
+      <span class='row text'>{{postName}}</span>
+    </div>
+    <div class='item-component_bottom'>
+
+      <span class='row title'>Атрибут 1:</span>
+      <div class='row text' data-title='atribute-1'>
+        <input class='input --selectAtribute' type='select' value='' />
+      </div>
+
+      <span class='row title'>Атрибут 2:</span>
+      <div class='row text' data-title='atribute-2'>
+        <input class='input --selectAtribute' type='select' value='' />
+      </div>
+
+      <span class='row title'>Склад:</span>
+      <span class='row text' data-comp-stock='{{stock}}'>{{stock}}</span>
+
+      <span class='row title'>Кількість:</span>
+      <div class='row text --setQuantity' data-comp-qty='quantity'>
+        <button class='button --btnSetQtity' type='button'>-</button>
+        <input
+          class='input --inputQuantity'
+          type='text'
+          name='quantity'
+          value='0'
+        />
+        <button class='button --btnSetQtity' type='button'>+</button>
+      </div>
+
+      <span class='row title'>Ціна:</span>
+      <span class='row text' data-comp-price='{{price}}'>{{price}}</span>
+
+      <span class='row title'>Сума:</span>
+      <span class='row text' data-comp-sum=''></span>
+    </div>
+  </li>
+{{/each}}
+</ul>
