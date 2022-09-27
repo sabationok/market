@@ -18,6 +18,7 @@ cartContentArr.push('101-2222', '101-8888');
 localstorage.save('cartContent', cartContentArr);
 //* Проміжна змінна (попередня ціль, кнопка)
 let prevOverlayBtn = null;
+let counter = 0;
 
 //* Знаходжу усі необхідні елементи для створення і управління модалкою
 const refs = {
@@ -94,6 +95,7 @@ function onOverlayBtnClick(event) {
 actionsBtnClickON();
 
 //* Функції відкритиття і закриття модалки
+//* Модалка 1
 function onBackdropClick(event) {
   let { target, currentTarget } = event;
   if (target === currentTarget) {
@@ -111,30 +113,31 @@ function closeModal() {
   if (modalEl.classList.contains('is-hidden')) {
     modalNameEl.innerHTML = '';
     modalContentEl.innerHTML = '';
+    console.log(modalNameEl.innerHTML);
+    console.log(modalContentEl.innerHTML);
     modalContentEl.classList.remove('--emptyCartContent');
     modalEl.removeEventListener('click', onBackdropClick);
   }
 }
-// toggleModal()
-
+//* Модалка 2
 function onBackdrop2Click(event) {
   let { target, currentTarget } = event;
   if (target === currentTarget) {
     closeModal2();
   }
 }
-// toggleModal2()
 function toggleModal2() {
   modal2El.classList.toggle('is-hidden');
-  // bodyEl.classList.toggle('--notScrolled');
   modal2El.addEventListener('click', onBackdrop2Click);
-  modal2NameEl.innerHTML = 'Modal 2';
-  modal2ContentEl.innerHTML = 'Modal 2';
+  if (bodyEl.classList.contains('--notScrolled')) {
+    return;
+  }
+  bodyEl.classList.toggle('--notScrolled');
 }
 function closeModal2() {
   modal2El.classList.toggle('is-hidden');
   // bodyEl.classList.remove('--notScrolled');
-  if (modalEl.classList.contains('is-hidden')) {
+  if (modal2El.classList.contains('is-hidden')) {
     modal2NameEl.innerHTML = '';
     modal2ContentEl.innerHTML = '';
     console.log(modal2NameEl.innerHTML);
@@ -142,6 +145,10 @@ function closeModal2() {
     modal2ContentEl.classList.remove('--emptyCartContent');
     modal2El.removeEventListener('click', onBackdrop2Click);
   }
+  if (!modalEl.classList.contains('is-hidden')) {
+    return;
+  }
+  bodyEl.classList.toggle('--notScrolled');
 }
 
 //* Функція із функціями які відповідають ся кнопкам
@@ -273,6 +280,26 @@ function startBtnAction(actionName, targetEl, event) {
     },
     killOrder: function onKillOrderBtnClick() {
       console.log('kill order click');
+    },
+    //* Зміна кількості
+    minus: function onMinusBtnClick(transferData) {
+      let { targetEl } = transferData;
+      counter = Number(targetEl.nextElementSibling.value);
+      console.log(counter);
+      if(counter <= 0){
+        return
+      }
+      targetEl.nextElementSibling.value = counter - 1;
+
+      // console.log('-', targetEl, targetEl.nextElementSibling);
+    },
+    plus: function onPlusBtnClick(transferData) {
+      let { targetEl } = transferData;
+      counter = Number(targetEl.previousElementSibling.value);
+      console.log(counter);
+      targetEl.previousElementSibling.value = counter + 1;
+
+      // console.log('+', targetEl, targetEl.previousElementSibling);
     },
   };
   btnActions[actionName](transferData);
