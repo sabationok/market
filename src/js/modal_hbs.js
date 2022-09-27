@@ -322,14 +322,11 @@ function createModalContent(transferData, callback) {
       },
       showAuthorPostsList: function createModalAutorList(transferData) {
         let { cardId, authorId, targetEl } = transferData;
-        console.log(postsListData);
-        let authorsListData = postsListData.filter(
-          el => el.postAuthorId === authorId
+        let authorsListData = card(
+          postsListData.filter(el => el.postAuthorId === authorId)
         );
-
-
         modalNameEl.innerHTML = `Автор ${authorId}`;
-        modalContentEl.innerHTML = card(authorsListData);
+        modalContentEl.innerHTML = `<div class="authorPostsList">${authorsListData}</div>`;
       },
     };
     modalActions[callback](transferData);

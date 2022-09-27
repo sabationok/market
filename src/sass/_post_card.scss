@@ -2,7 +2,7 @@
   position: relative;
 
   height: 100%;
-
+  min-width: 300px;
   max-width: 480px;
   @media screen and (min-width: 768px) {
     padding: 0 1px;
@@ -258,7 +258,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    
+
     overflow-x: hidden;
     overflow-y: auto;
     width: 100%;
@@ -346,6 +346,21 @@
           opacity: 1;
         }
       }
+    }
+  }
+}
+.authorPostsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  & .card {
+    @media screen and (min-width: 768px) {
+      padding: 0;
+    }
+    transition: all var(--timing-function__main);
+    &:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
   }
 }

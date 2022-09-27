@@ -142,35 +142,35 @@ button {
 }
 
 /* ----------------- SCROLLBAR */
-// @media screen and (min-width: 1000px) {
-//   ::-webkit {
-//     &-scrollbar {
-//       width: 6px;
-//       height: 6px;
-//     }
-//     &-scrollbar-track {
-//       background-color: rgba(0, 0, 0, 0.1);
-//     }
-//     &-scrollbar-button {
-//       height: 0;
-//       width: 0;
-//       overflow: hidden;
-//     }
-//     &-scrollbar-thumb {
-//       background-color: rgba(0, 0, 0, 0.3);
-//       border-radius: 6px;
-//     }
-//     &-scrollbar-thumb:active {
-//       background-color: rgba(0, 0, 0, 0.5);
-//     }
-//     &-scrollbar-thumb:hover {
-//       background-color: rgba(0, 0, 0, 0.6);
-//     }
+/*@media screen and (min-width: 1000px) {
+  ::-webkit {
+    &-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    &-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    &-scrollbar-button {
+      height: 0;
+      width: 0;
+      overflow: hidden;
+    }
+    &-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+    }
+    &-scrollbar-thumb:active {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    &-scrollbar-thumb:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
 
-//     // bimp
-//       // --scrollbar-top-offset: 0px;
-//       // --scrollbar-bottom-offset: 0px;
-//       // --scrollbar-left-offset: 0px;
-//       // --scrollbar-right-offset: 0px;
-//   }
-// }
+    // bimp
+      // --scrollbar-top-offset: 0px;
+      // --scrollbar-bottom-offset: 0px;
+      // --scrollbar-left-offset: 0px;
+      // --scrollbar-right-offset: 0px;
+  }
+}*/
