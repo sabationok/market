@@ -6,8 +6,8 @@ $(document).ready(function () {
     infinite: true,
     arrows: true,
 
-    // centerMode: true,
-    // centerPadding: '0',
+    centerMode: true,
+    centerPadding: '0',
     slidesToShow: 3,
     slidesToScroll: 1,
 
@@ -17,7 +17,7 @@ $(document).ready(function () {
         settings: {
           arrows: true,
           // centerMode: true,
-          // centerPadding: '40px',
+          // centerPadding: '20px',
           slidesToShow: 2,
           slidesToScroll: 1,
         },

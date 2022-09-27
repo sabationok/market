@@ -1,29 +1,32 @@
-import { autorsListData } from './js-data/autorsList';
+import { authorsListData } from './js-data/autorsList';
 import { postsListData } from './js-data/postsList';
 import sprite_market from './images/sprite_market.svg';
-import  autor  from './hbs/autor.hbs';
+
+import autor from './hbs/autor.hbs';
+import card from './hbs/card.hbs';
+import plugins from './js/plugins';
 
 // console.log(postsListData.length);
-// console.log('Список авторів', autorsListData);
+// console.log('Список авторів', authorsListData);
 // console.log(postsListData);
 
 let refs = {
-  autorElmsArr: null,
-}
+  authorElmsArr: null,
+};
 // * Обєкт яккий потрібно вставити у функцію для створення сторінки
 let Obj = {
   sectionClass: '.js-postList',
-  autorsArr: autorsListData,
+  authorsArr: authorsListData,
   postCardsDataArr: postsListData,
 };
 // ? Запуск фунції
 // creatAautorsZone(Obj);
-createAutorsZone(Obj);
+createAuthorsZone(Obj);
 // * ===== створюємо сторінку публікацій
-function createAutorsZone(pageObject) {
+function createAuthorsZone(pageObject) {
   let {
     sectionClass = '',
-    autorsArr = [],
+    authorsArr = [],
     postCardsDataArr = [],
     ...others
   } = pageObject;
@@ -31,48 +34,57 @@ function createAutorsZone(pageObject) {
   // * Куди саме вставляти
   let pageContainerEl = document.querySelector(sectionClass);
   // * Готова для вставки початкова сторінка, далі тільки доповнювати
-  let allAutorsInText = autorsArr
+  let allAuthorsInText = authorsArr
     .map(el => createAutorEl(el, postCardsDataArr))
     .join('');
 
-  // let allAutorsInText_HBS = autorsArr.map(el => autor(el)).join('');
-  // console.log(allAutorsInText_HBS);
+  // let allAuthorsInText_HBS = authorsArr.map(el => autor(el)).join('');
+  // console.log(allAuthorsInText_HBS);
   // * ===== Вставляю все що створене на сторінку
-  pageContainerEl.insertAdjacentHTML('afterbegin', allAutorsInText);
+  pageContainerEl.insertAdjacentHTML('afterbegin', allAuthorsInText);
 }
 // * ===== створюю одного публікатора
 function createAutorEl(autorDataObject, postCardsDataArr) {
   let {
-    autorId = 'autorId',
-    autorName = 'autorName',
-    autorlogoLink = 'LOGO',
-    autorType = 'autorType',
-    autorPostCardsIdList = [],
+    id = 'authorId',
+    name = 'authorName',
+    logoLink = 'LOGO',
+    type = 'autorType',
+    top5Cards = [],
     ...others
   } = autorDataObject;
   // * Змінна у якій зберігаються пости автора відфільтровані із загальної бази
   const filteredPostCardsDataArr = [];
-console.log(filteredPostCardsDataArr);
   // * Фільтруємо загальний масив на основі списку постів автора
   filterArrByArr(
-    autorPostCardsIdList,
+    top5Cards,
     postCardsDataArr,
     filteredPostCardsDataArr,
+    'postId'
   );
-// console.log(autorPostCardsIdList);
-  //* Функція яка фільтрує масив згідно масиву, по ID картки
-  function filterArrByArr(autorPostCardsArr = [], arrayForFinding=[], arrayForPushing=[] ) {
 
+  //* Функція яка фільтрує масив згідно масиву, по ID картки
+  function filterArrByArr(
+    autorPostCardsArr = [],
+    arrayForFinding = [],
+    arrayForPushing = [],
+    param
+  ) {
     // * Проміжний результат зберігається тут
     let foundedPost = {};
+    console.log(autorPostCardsArr.length);
     for (let i = 0; i < autorPostCardsArr.length; i += 1) {
-      foundedPost = arrayForFinding.find(post => post.postId === autorPostCardsArr[i]);
+      foundedPost = arrayForFinding.find(
+        el => el[param] === autorPostCardsArr[i]
+      );
+
       // * Перевірка
       if (foundedPost !== undefined) {
         arrayForPushing.push(foundedPost);
       }
     }
   }
+
   // * Тут зберігається шаблон усього списку постів готовий для вставки
   let cardListArrayInText = filteredPostCardsDataArr.map(el =>
     createPostCardComp(el)
@@ -83,39 +95,39 @@ console.log(filteredPostCardsDataArr);
     <div class="slick__container">
       <div class="autorZone__header">
         <a class="autorZone__logoBox" href=""> 
-          <img class="autorZone__logoImg" src="${autorlogoLink}" alt="${autorName} logo" >
+          <img class="autorZone__logoImg" src="${logoLink}" alt="${name} logo" >
         </a>
         <div class="autorZone__autorInfo">
-          <span  class="autorZone__autorName">
-            ${autorName}
+          <span  class="autorZone__name">
+            ${name}
           </span>
           <ul class="autorZone__autorInfo-list">
-            <li>Повна назва: ${autorName}</li>
-            <li>Тип: ${autorType}</li>
-            <li>ID: ${autorId}</li>
+            <li>Повна назва: ${name}</li>
+            <li>Тип: ${type}</li>
+            <li>ID: ${id}</li>
           </ul>
         </div>
         
-        <button class="button --open-autorCardList" id="${autorId}" data-autor-id="${autorId}" data-action="showAutrorCards">
+        <button class="button --open-autorCardList" id="${id}" data-autor-id="${id}" data-action="showAuthorsCards">
           <svg class="btn-svg">
             <use href="${sprite_market}#icon-menu-3"></use>
           </svg>
         </button>
       </div>
-      <div class="slick__brands-slider" data-autor-id="${autorId}" data-autor-type="${autorType}">
+      <div class="slick__brands-slider" data-autor-id="${id}" data-autor-type="${type}">
         ${cardListArrayInText}
       </div>
     </div>
   </div>
   `;
-};
+}
 // ? Функція для створення картки
 function createPostCardComp(cardInfoObject) {
   let {
     postId = '000-000000',
     postType = 'posttype',
     postName = 'postName',
-    postAutorId = 'postAutorId',
+    postid = 'postid',
     articul = '000000',
     price = 0,
     cashbackLvl = '00',
@@ -249,8 +261,3 @@ function createPostCardComp(cardInfoObject) {
   </div>
   `;
 }
-// refs.autorElmsArr = document.querySelectorAll('.js-autor')
-
-// refs.autorElmsArr.forEach(el => {
-//   console.log(el);
-// });

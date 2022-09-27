@@ -8,6 +8,19 @@ import localstorage from './localstorage';
 import cart from '../hbs/cart.hbs';
 import simpleOrderForm from '../hbs/simpleOrderForm.hbs';
 
+let testArr = () => {
+  let filteredArr = [];
+  for (let i = 0; i < postsListData.length; i += 1) {
+    if (postsListData[i].postAutorId === '101') {
+      filteredArr.push(postsListData[i]);
+      // console.log(postsListData[i]);
+    }
+  }
+};
+// console.log(postsListData.map(el => el.postAutorId));
+// console.log(testArr());
+// console.log(postsListData);
+
 let cartContentArr = [];
 cartContentArr.push('102-2222');
 localstorage.save('cartContent', cartContentArr);
@@ -51,7 +64,7 @@ function buttonEvent(event) {
     return;
   } else if (target !== undefined && btnAction !== undefined) {
     targetEl = target;
-    onOverlayBtnClick(event)
+    onOverlayBtnClick(event);
     startBtnAction(btnAction, targetEl, event);
     return;
   }
@@ -59,18 +72,15 @@ function buttonEvent(event) {
 function onOverlayBtnClick(event) {
   let { target } = event;
 
-  if (target.classList.contains('--overlay')) {
-    return;
-  }
-  if (!target.classList.contains('--pull-img-overlay')) {
-    document.querySelectorAll('.--pull-img-overlay').forEach(elem => {
-      elem.classList.remove('--selected');
-    });
-    // document.removeEventListener('click', onOverlayBtnClick);
-
-    console.log('Не поцілив!');
-    return;
-  }
+  // if (target.classList.contains('--overlay')) {
+  //   return;
+  // }
+  // if (!target.classList.contains('--pull-img-overlay')) {
+  //   document.querySelectorAll('.--pull-img-overlay').forEach(elem => {
+  //     elem.classList.remove('--selected');
+  //   });
+  //   return;
+  // }
   if (target === prevOverlayBtn) {
     target.classList.toggle('--selected');
     prevOverlayBtn = target;
@@ -84,7 +94,6 @@ function onOverlayBtnClick(event) {
   prevOverlayBtn = target;
 }
 actionsBtnClickON();
-
 
 //* Функції відкритиття і закриття модалки
 function onBackdropClick(event) {
@@ -126,7 +135,7 @@ function startBtnAction(actionName, targetEl, event) {
   let btnActions = {
     toggleModal: toggleModal,
     closeModal: closeModal,
-    showAutrorCards: function onShowAutorCardsBtnClick(transferData) {
+    showAuthorsCards: function onShowAutorCardsBtnClick(transferData) {
       let { cardId, autorId, targetEl, cardObject } = transferData;
 
       this.toggleModal();
@@ -157,7 +166,6 @@ function startBtnAction(actionName, targetEl, event) {
       console.log(`want to buy card ${cardId} Now`);
     },
     //* overlay
-
     showSizes: function onOverlaySizesBtnClick(transferData) {
       let { cardId, autorId, targetEl, cardObject } = transferData;
       // targetEl.classList.toggle('--selected');
