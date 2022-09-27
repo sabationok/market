@@ -72,7 +72,6 @@ function createAutorEl(autorDataObject, postCardsDataArr) {
   ) {
     // * Проміжний результат зберігається тут
     let foundedPost = {};
-    console.log(autorPostCardsArr.length);
     for (let i = 0; i < autorPostCardsArr.length; i += 1) {
       foundedPost = arrayForFinding.find(
         el => el[param] === autorPostCardsArr[i]

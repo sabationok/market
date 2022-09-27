@@ -253,28 +253,8 @@ function createModalContent(transferData, callback) {
     return;
   } else if (callback !== undefined) {
     modalCallbacks(callback);
+    return;
   }
-  /*function onBackdropClick(event) {
-    let { target, currentTarget } = event;
-    if (target === currentTarget) {
-      closeModal();
-    }
-  }
-  function toggleModal() {
-    modalEl.classList.toggle('is-hidden');
-    bodyEl.classList.toggle('--notScrolled');
-    modalEl.addEventListener('click', onBackdropClick);
-  }
-  function closeModal() {
-    modalEl.classList.toggle('is-hidden');
-    bodyEl.classList.remove('--notScrolled');
-    if (modalEl.classList.contains('is-hidden')) {
-      modalNameEl.innerHTML = '';
-      modalContentEl.innerHTML = '';
-      modalContentEl.classList.remove('--emptyCartContent');
-      modalEl.removeEventListener('click', onBackdropClick);
-    }
-  }*/
   function modalCallbacks(callback) {
     let cartFormEl = null;
     let modalActions = {
