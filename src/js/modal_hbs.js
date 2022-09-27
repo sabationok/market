@@ -285,21 +285,16 @@ function startBtnAction(actionName, targetEl, event) {
     minus: function onMinusBtnClick(transferData) {
       let { targetEl } = transferData;
       counter = Number(targetEl.nextElementSibling.value);
-      console.log(counter);
       if(counter <= 0){
         return
       }
       targetEl.nextElementSibling.value = counter - 1;
-
-      // console.log('-', targetEl, targetEl.nextElementSibling);
     },
     plus: function onPlusBtnClick(transferData) {
       let { targetEl } = transferData;
       counter = Number(targetEl.previousElementSibling.value);
       console.log(counter);
       targetEl.previousElementSibling.value = counter + 1;
-
-      // console.log('+', targetEl, targetEl.previousElementSibling);
     },
   };
   btnActions[actionName](transferData);

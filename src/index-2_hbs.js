@@ -94,11 +94,11 @@ function createAutorEl(autorDataObject, postCardsDataArr) {
         <a class="autorZone__logoBox" href=""> 
           <img class="autorZone__logoImg" src="${logoLink}" alt="${name} logo" >
         </a>
-        <div class="autorZone__autorInfo">
+        <div class="autorZone__info">
           <span  class="autorZone__name">
             ${name}
           </span>
-          <ul class="autorZone__autorInfo-list">
+          <ul class="autorZone__info-list">
             <li>Повна назва: ${name}</li>
             <li>Тип: ${type}</li>
             <li>ID: ${id}</li>

@@ -20,7 +20,7 @@
   &__logoImg {
     width: 64px;
   }
-  &__autorName {
+  &__name {
     display: flex;
     align-items: center;
     font-family: 'Roboto', sans-serif;
@@ -33,7 +33,7 @@
 
     transition: all var(--timing-function__main);
   }
-  &__autorInfo {
+  &__info {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -47,7 +47,7 @@
 
     user-select: none;
     &:hover {
-      & .autorZone__autorInfo-list {
+      & .autorZone__info-list {
         opacity: 1;
         visibility: visible;
         pointer-events: all;
