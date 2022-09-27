@@ -1,2 +1,0 @@
-$(document).ready((function(){$(".slick__brands-slider").slick({dots:!0,infinite:!0,arrows:!0,centerMode:!0,centerPadding:"0",slidesToShow:3,slidesToScroll:1,responsive:[{breakpoint:1100,settings:{arrows:!0,slidesToShow:2,slidesToScroll:1}},{breakpoint:768,settings:{arrows:!1,slidesToShow:1,slidesToScroll:1}}],prevArrow:'<button type="button" class="slick-prev">&#60;</button>',nextArrow:'<button type="button" class="slick-next">&#62;</button>'})}));
-//# sourceMappingURL=index.28e2010a.js.map
