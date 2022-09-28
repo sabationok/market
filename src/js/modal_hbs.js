@@ -18,6 +18,7 @@ cartContentArr.push('101-2222', '101-8888');
 localstorage.save('cartContent', cartContentArr);
 //* Проміжна змінна (попередня ціль, кнопка)
 let prevOverlayBtn = null;
+//* Проміжна змінна для функцій зміни кількості товару
 let counter = 0;
 
 //* Знаходжу усі необхідні елементи для створення і управління модалкою
@@ -113,8 +114,6 @@ function closeModal() {
   if (modalEl.classList.contains('is-hidden')) {
     modalNameEl.innerHTML = '';
     modalContentEl.innerHTML = '';
-    console.log(modalNameEl.innerHTML);
-    console.log(modalContentEl.innerHTML);
     modalContentEl.classList.remove('--emptyCartContent');
     modalEl.removeEventListener('click', onBackdropClick);
   }
@@ -140,8 +139,7 @@ function closeModal2() {
   if (modal2El.classList.contains('is-hidden')) {
     modal2NameEl.innerHTML = '';
     modal2ContentEl.innerHTML = '';
-    console.log(modal2NameEl.innerHTML);
-    console.log(modal2ContentEl.innerHTML);
+
     modal2ContentEl.classList.remove('--emptyCartContent');
     modal2El.removeEventListener('click', onBackdrop2Click);
   }
@@ -160,9 +158,9 @@ function startBtnAction(actionName, targetEl, event) {
     cardObject: null,
     btnEvent: event,
   };
-  // transferData.cardObject = postsListData.find(
-  //   el => el.postId === transferData.cardId
-  // );
+  transferData.cardObject = postsListData.find(
+    el => el.postId === transferData.cardId
+  );
 
   //* обєкт із функціями кнопок
   let btnActions = {
@@ -285,16 +283,15 @@ function startBtnAction(actionName, targetEl, event) {
     minus: function onMinusBtnClick(transferData) {
       let { targetEl } = transferData;
       counter = Number(targetEl.nextElementSibling.value);
-      if(counter <= 0){
-        return
+      if (counter <= 0) {
+        return;
       }
-      targetEl.nextElementSibling.value = counter - 1;
+      targetEl.nextElementSibling.value = counter -= 1;
     },
     plus: function onPlusBtnClick(transferData) {
       let { targetEl } = transferData;
       counter = Number(targetEl.previousElementSibling.value);
-      console.log(counter);
-      targetEl.previousElementSibling.value = counter + 1;
+      targetEl.previousElementSibling.value = counter += 1;
     },
   };
   btnActions[actionName](transferData);
@@ -327,7 +324,7 @@ function createModalContent(transferData, callback) {
         );
       },
       modalFormReset: function onModalFormResetBtClick() {
-        // cartFormEl.removeEventListener('reset', modalActions.modalFormReset);
+        cartFormEl.removeEventListener('reset', modalActions.modalFormReset);
         closeModal();
       },
       openCart: function createModalCart() {
@@ -380,7 +377,7 @@ function createModalContent(transferData, callback) {
           ...others
         } = lastSeenCardObj;
 
-        modalNameEl.textContent = `Купити товар art${articul}`;
+        modalNameEl.textContent = `"${postName}", art${articul}`;
         modalContentEl.innerHTML = simpleOrderForm(lastSeenCardObj);
 
         let cartForm = modalContentEl.querySelector('.js-modal-form');
@@ -389,11 +386,19 @@ function createModalContent(transferData, callback) {
       },
       showAuthorPostsList: function createModalAutorList(transferData) {
         let { cardId, authorId, targetEl } = transferData;
-        let authorsListData = card_2(
+        let authorInfoObj = authorsListData.find(el => el.id === authorId);
+        let { id, name, type, logoLink } = authorInfoObj;
+        let authorsPostsArr = card_2(
           postsListData.filter(el => el.postAuthorId === authorId)
         );
-        modalNameEl.innerHTML = `Автор ${authorId}`;
-        modalContentEl.innerHTML = `<div class="authorPostsList">${authorsListData}</div>`;
+
+        modalNameEl.innerHTML = `
+        <div class="modal__authorLogoBox">
+          <img class="modal__authorLogo" src="${logoLink}" alt="">
+        </div> 
+        <span class="modal__authorName">"${name}" (${type} ${id})</span>
+        `;
+        modalContentEl.innerHTML = `<div class="authorPostsList">${authorsPostsArr}</div>`;
       },
     };
     modalActions[callback](transferData);
@@ -411,12 +416,12 @@ function createModal2Content(transferData, callback) {
   }
   function modalCallbacks(callback) {
     let cartFormEl = null;
-    let modalActions = {
+    let modal2Actions = {
       modalFormSubmit: function onModal2FormSubmitBtClick(event) {
         event.preventDefault();
 
         closeModal2();
-        cartFormEl.removeEventListener('submit', modalActions.modalFormSubmit);
+        cartFormEl.removeEventListener('submit', modal2Actions.modalFormSubmit);
         console.log(
           'Відправляється запит POST із інфо про замовлення покупцяю'
         );
@@ -425,7 +430,7 @@ function createModal2Content(transferData, callback) {
         );
       },
       modalFormReset: function onModal2FormResetBtClick() {
-        cartFormEl.removeEventListener('reset', modalActions.modalFormReset);
+        cartFormEl.removeEventListener('reset', modal2Actions.modalFormReset);
         closeModal2();
       },
       simpleOrder: function createModal2ToBuyNow(transferData) {
@@ -449,7 +454,7 @@ function createModal2Content(transferData, callback) {
           ...others
         } = lastSeenCardObj;
 
-        modal2NameEl.textContent = `Купити товар art${articul}`;
+        modal2NameEl.textContent = `"${postName}", art${articul}`;
         modal2ContentEl.innerHTML = simpleOrderForm(lastSeenCardObj);
 
         cartFormEl = modal2ContentEl.querySelector('.js-modal-form');
@@ -457,7 +462,7 @@ function createModal2Content(transferData, callback) {
         cartFormEl.addEventListener('reset', this.modalFormReset);
       },
     };
-    modalActions[callback](transferData);
+    modal2Actions[callback](transferData);
   }
 }
 

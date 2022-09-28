@@ -7,10 +7,6 @@
     position: relative;
     z-index: 5;
 
-    // position: sticky;
-    // top: 0;
-    // left: 0;
-
     padding: 0 8px;
 
     background-color: #fff;
@@ -93,4 +89,13 @@
       }
     }
   }
+}
+.modal__authorLogoBox{
+  height: 30px;
+}
+.modal__authorLogo{
+  height: 100%;
+}
+.modal__authorName{
+  white-space: nowrap;
 }

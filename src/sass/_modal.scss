@@ -25,9 +25,13 @@
   transition: transform var(--timing-function__main),
     visibility var(--timing-function__main);
   &-name {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
     font-size: 18px;
-    margin: 0 auto;
-    text-align: center;
+    // margin: 0 auto;
+    // text-align: center;
   }
   &-top {
     display: flex;
